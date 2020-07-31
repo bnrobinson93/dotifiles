@@ -39,7 +39,6 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 set encoding=utf8
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 
 """""""""""""""""""""""""""
 " disable bells
@@ -111,11 +110,12 @@ let g:gruvbox_italicize_comments = 1
 
 " Airline
 set laststatus=2
-let g:airline#extensions#tabline#enabled=1
 let g:airline_theme='gruvbox'
 "let g:airline_theme='nord'
-let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " Indent Guides
 let g:indentLine_enabled=1
