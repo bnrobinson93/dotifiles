@@ -107,6 +107,7 @@ prompt_context() {
 ls="ls --color=tty"
 grep="grep --color"
 alias vi="vim"
+alias la="ls -lart --color | less -reXF"
 
 # Autostart tmux
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
