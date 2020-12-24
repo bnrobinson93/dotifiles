@@ -104,10 +104,20 @@ prompt_context() {
   fi
 }
 
-ls="ls --color=tty"
 grep="grep --color"
 alias vi="vim"
-alias la="ls -lart --color | less -reXF"
+
+if [[ "$(which exa)" != "" ]]; then
+  ls="exa"
+  la="exa -la --sort=modified"
+  lt="exa -l --sort=modified | tail"
+  lss="exa -l --sort=modified | less -reXF"
+else
+  ls="ls --color=tty"                                                       
+  la="ls -larth"
+  lt="ls -lrth | tail"
+  lss="ls -lrth | less -reXF"
+fi
 
 # Autostart tmux
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
