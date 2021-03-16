@@ -104,10 +104,34 @@ prompt_context() {
   fi
 }
 
+export ANDROID_SDK=$HOME/Android/Sdk
+export PATH=~/.npm-global/bin:$ANDROID_SDK/platform-tools:$PATH
+
+function la() {
+  if [ "$1" != "" ]; then
+    exa -la -snew "$1" | less -reXF
+  else
+    exa -la -snew | less -reXF
+  fi
+}
+
+function lt() {
+  if [ "$1" != "" ]; then
+    exa -l -snew "$1"
+  else
+    exa -l -snew
+  fi
+}
+
 ls="ls --color=tty"
+#alias la="ls -lart "$*" | less -reXF"
+#alias lt="ls -lrt "$*" | tail -20"
 grep="grep --color"
 alias vi="vim"
-alias la="ls -lart --color | less -reXF"
+alias vi="vim"
+
+# Fix issue with apt <thing>* not working
+unsetopt no_match
 
 # Autostart tmux
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then

@@ -7,17 +7,13 @@ let mapleader=" "
 """""""""""""""""""""""""""
 " Plugins 
 """""""""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+call plug#begin('~/.vim/plugged')
 
-Plug 'arcticicestudio/nord-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
 "linting
 Plug 'w0rp/ale'
 "git status checker
@@ -40,6 +36,13 @@ Plug 'pangloss/vim-javascript'
 "file browser
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+"theme
+Plug 'vim-airline/vim-airline-themes'
+Plug 'haishanh/night-owl.vim'
+"Plug 'arcticicestudio/nord-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -100,22 +103,24 @@ set lazyredraw
 " Theme
 set background=dark
 set termguicolors
+colorscheme night-owl
 "colorscheme nord
 "let g:nord_italic = 1
 "let g:nord_underline = 1
 "let g:nord_italic_comments = 1
 "let g:nord_cursor_line_number_background = 1
-colorscheme gruvbox
-let g:gruvbox_italic = 1
-let g:gruvbox_underline = 1
-let g:gruvbox_comments = 1
-let g:gruvbox_cursor_line_number_background = 1
-let g:gruvbox_contrast = 'hard'
-let g:gruvbox_italicize_comments = 1
+"colorscheme gruvbox
+"let g:gruvbox_italic = 1
+"let g:gruvbox_underline = 1
+"let g:gruvbox_comments = 1
+"let g:gruvbox_cursor_line_number_background = 1
+"let g:gruvbox_contrast = 'hard'
+"let g:gruvbox_italicize_comments = 1
 
 " Airline
 set laststatus=2
-let g:airline_theme='gruvbox'
+let g:airline_theme='night_owl'
+"let g:airline_theme='gruvbox'
 "let g:airline_theme='nord'
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#tabline#enabled=1
@@ -203,7 +208,7 @@ command Q q
 command W w
 
 " Select all
-map <C-a> <esc>ggVG<CR>
+map <C-a> <esc>ggVG
 
 "Allow for recursive fuzzy find (here and down)
 set path+=**
@@ -224,3 +229,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeShowIgnoredStatus = 1
+
+"term
+"wincmd x
+"res 20
