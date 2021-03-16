@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/brad/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 if [[ ! -a $HOME/.oh-my-zsh/themes/oxide.zsh-theme ]]; then
   wget -q https://raw.githubusercontent.com/dikiaap/dotfiles/master/.oh-my-zsh/themes/oxide.zsh-theme -O $HOME/.oh-my-zsh/themes/oxide.zsh-theme
@@ -128,7 +128,18 @@ ls="ls --color=tty"
 #alias lt="ls -lrt "$*" | tail -20"
 grep="grep --color"
 alias vi="vim"
-alias vi="vim"
+
+if [[ "$(which exa)" != "" ]]; then
+  alias ls="exa"
+  alias la="exa -la --sort=modified"
+  alias lt="exa -l --sort=modified | tail"
+  alias lss="exa -l --sort=modified | less -reXF"
+else
+  alias ls="ls --color=tty"                                                       
+  alias la="ls -larth"
+  alias lt="ls -lrth | tail"
+  alias lss="ls -lrth | less -reXF"
+fi
 
 # Fix issue with apt <thing>* not working
 unsetopt no_match
