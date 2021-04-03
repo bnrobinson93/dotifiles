@@ -73,30 +73,17 @@ plugins=(git catimg dotenv zsh-autosuggestions zsh-syntax-highlighting node npm 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='vi'
+fi
 
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
@@ -124,12 +111,10 @@ function lt() {
 }
 
 ls="ls --color=tty"
-#alias la="ls -lart "$*" | less -reXF"
-#alias lt="ls -lrt "$*" | tail -20"
 grep="grep --color"
 alias vi="vim"
 
-if [[ "$(which exa)" != "" ]]; then
+if [[ -z $(which exa) ]]; then
   alias ls="exa"
   alias la="exa -la --sort=modified"
   alias lt="exa -l --sort=modified | tail"
