@@ -7,13 +7,16 @@ let mapleader=" "
 """""""""""""""""""""""""""
 " Plugins 
 """""""""""""""""""""""""""
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 call plug#begin('~/.vim/plugged')
-
+Plug 'haishanh/night-owl.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'tomasr/molokai'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-bufferline'
+Plug 'morhetz/gruvbox'
 "linting
 Plug 'w0rp/ale'
 "git status checker
@@ -36,19 +39,22 @@ Plug 'pangloss/vim-javascript'
 "file browser
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-"theme
-Plug 'vim-airline/vim-airline-themes'
-Plug 'haishanh/night-owl.vim'
-"Plug 'arcticicestudio/nord-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-"Plug 'morhetz/gruvbox'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
-set encoding=utf8
+set renderoptions=type:directx
+set encoding=utf-8
+"set guifont=Fira\ Code:h12
+set guifont=Fira\ Mono\ For\ Powerline:h12
 
 """""""""""""""""""""""""""
+" for devicons
+filetype off
+filetype plugin indent on " required
+set encoding=utf-8
+let g:airline_powerline_fonts=1
+
 " disable bells
 autocmd! GUIEnter * set vb t_vb=
 
@@ -101,15 +107,14 @@ set ttyfast
 set lazyredraw
 
 " Theme
-set guifont=Dank\ Mono:h12
 set background=dark
 set termguicolors
-colorscheme night-owl
 "colorscheme nord
 "let g:nord_italic = 1
 "let g:nord_underline = 1
 "let g:nord_italic_comments = 1
 "let g:nord_cursor_line_number_background = 1
+"colorscheme molokai
 "colorscheme gruvbox
 "let g:gruvbox_italic = 1
 "let g:gruvbox_underline = 1
@@ -117,16 +122,34 @@ colorscheme night-owl
 "let g:gruvbox_cursor_line_number_background = 1
 "let g:gruvbox_contrast = 'hard'
 "let g:gruvbox_italicize_comments = 1
+"colorscheme palenight
+"let g:palenight_terminal_italics=1
+colorscheme night-owl
+highlight Comment cterm=italic gui=italic
+
+" To enable the lightline theme
+set showtabline=2
+autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+let g:lightline#bufferline#show_number  = 1
+let g:lightline#bufferline#shorten_path = 0
+let g:lightline#bufferline#unnamed      = '[No Name]'
+let g:lightline = { 'colorscheme': 'nightowl' }
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 " Airline
 set laststatus=2
-let g:airline_theme='night_owl'
+let g:airline#extensions#tabline#enabled=1
+let airline#extensions#ale#error_symbol=1
+let airline#extensions#ale#warning_symbol=1
+"let g:airline_theme='molokai'
 "let g:airline_theme='gruvbox'
 "let g:airline_theme='nord'
-let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline_theme='palenight'
+"let g:airline_theme='night-owl'
+"let g:airline_powerline_fonts=1
+"let g:airline#extensions#branch#enabled=1
 
 " Indent Guides
 let g:indentLine_enabled=1
@@ -163,9 +186,6 @@ function! s:Warn(msg)
   echohl NONE
 endfunction
 
-nnoremap <silent> <Leader>bd :q<CR>
-nnoremap <silent> <Leader>bD :q!<CR>
-
 " Chain vimgrep and copen
 augroup qf
     autocmd!
@@ -187,9 +207,9 @@ set termguicolors
 " Custom bindings
 """"""""""""""""""""""""""
 
-" Browse airline tabs
-:nnoremap <leader>l :ls<CR>b 
-:nnoremap <leader>n :enew<CR>
+" Browse airline tabs (buffers)
+:nnoremap <leader>l :ls<CR> 
+:nnoremap <leader>e :enew<CR>
 :nnoremap <leader>d :bd<CR>
 :nnoremap <leader>o :bnext<CR>
 :nnoremap <leader>i :bprevious<CR>
@@ -200,7 +220,7 @@ vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S>  <C-O>:update<CR>
 
 " Comment block
-vnoremap <silent> <C-k> :Commentary<cr>
+vnoremap <silent> <C-/> :Commentary<cr>
 
 " Close current buffer
 noremap <silent> <C-q> :q!<CR>
@@ -209,28 +229,29 @@ command Q q
 command W w
 
 " Select all
-map <C-a> <esc>ggVG
+map <C-a> <esc>ggVG<CR>
 
 "Allow for recursive fuzzy find (here and down)
 set path+=**
 
 "Filebrowser
-nnoremap <leader>l :Lex<CR>
-let g:netrw_banner=0
-let g:netrw_browse_split=4
-let g:netrw_altv=1
-let g:netrw_winsize=25
-let g:netrw_liststyle=3
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+"nnoremap <leader>b :Lex<CR>
+"let g:netrw_banner=0
+"let g:netrw_browse_split=4
+"let g:netrw_altv=1
+"let g:netrw_winsize=25
+"let g:netrw_liststyle=3
+"let g:netrw_list_hide=netrw_gitignore#Hide()
+"let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
-map <C-b> :NERDTreeToggle %<CR>
-map <C-m> :NERDTreeFind<CR>
+map <C-b> :NERDTreeToggle<CR>
+map <C-f> :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeShowIgnoredStatus = 1
+autocmd FileType nerdtree setlocal nolist
 
 "term
 "wincmd x
 "res 20
+
+
