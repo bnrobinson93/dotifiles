@@ -1,3 +1,4 @@
+#!/usr/bin/zsh -f
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -68,7 +69,22 @@ fi
 if [[ ! -a ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
+
+ZSH_HIGHLIGHT_MAXLENGTH=300
 plugins=(git catimg dotenv zsh-autosuggestions zsh-syntax-highlighting node npm sudo)
+
+# This speeds up pasting w/ autosuggest
+# https://github.com/zsh-users/zsh-autosuggestions/issues/238
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,36 +110,31 @@ prompt_context() {
 export ANDROID_SDK=$HOME/Android/Sdk
 export PATH=~/.npm-global/bin:$ANDROID_SDK/platform-tools:$PATH
 
-function la() {
-  if [ "$1" != "" ]; then
-    exa -la -snew "$1" | less -reXF
-  else
-    exa -la -snew | less -reXF
-  fi
-}
-
-function lt() {
-  if [ "$1" != "" ]; then
-    exa -l -snew "$1"
-  else
-    exa -l -snew
-  fi
-}
-
-ls="ls --color=tty"
 grep="grep --color"
 alias vi="vim"
 
 if [[ -z $(which exa) ]]; then
-  alias ls="exa"
-  alias la="exa -la --sort=modified"
-  alias lt="exa -l --sort=modified | tail"
-  alias lss="exa -l --sort=modified | less -reXF"
+  ls="exa"
+  function la {
+    exa -la --sort=modified "$*"
+  }
+  function lt {
+    exa -l --sort=modified "$*" | tail 
+  }
+  function lss {
+    exa -l --sort=modified "$*" | less -reXF
+  }
 else
-  alias ls="ls --color=tty"                                                       
-  alias la="ls -larth"
-  alias lt="ls -lrth | tail"
-  alias lss="ls -lrth | less -reXF"
+  ls="ls --color=tty"
+  function la {
+    ls -larth "$*"
+  }
+  function lt {
+    ls -lrth "$*" | tail
+  }
+  function lss {
+    ls -lrth "$*" | less -reXF
+  }
 fi
 
 # Fix issue with apt <thing>* not working
