@@ -101,6 +101,7 @@ set ttyfast
 set lazyredraw
 
 " Theme
+set guifont=Dank\ Mono:h12
 set background=dark
 set termguicolors
 colorscheme night-owl
@@ -223,7 +224,7 @@ let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
-map <C-n> :NERDTreeToggle %<CR>
+map <C-b> :NERDTreeToggle %<CR>
 map <C-m> :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
