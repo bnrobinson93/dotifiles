@@ -5,6 +5,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+if [[ ! -z $HOME/.oh-my-zsh ]]; then
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 if [[ ! -a $HOME/.oh-my-zsh/themes/oxide.zsh-theme ]]; then
   wget -q https://raw.githubusercontent.com/dikiaap/dotfiles/master/.oh-my-zsh/themes/oxide.zsh-theme -O $HOME/.oh-my-zsh/themes/oxide.zsh-theme
 fi
