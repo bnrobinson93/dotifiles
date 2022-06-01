@@ -117,35 +117,54 @@ export PATH=~/.npm-global/bin:$ANDROID_SDK/platform-tools:$PATH
 grep="grep --color"
 alias vi="vim"
 
-if [[ `exa | wc -l` > 0 ]]; then
-  ls="exa"
-  function la {
-    exa -la --sort=modified "$*"
-  }
-  function lt {
-    exa -l --sort=modified "$*" | tail 
-  }
-  function lss {
-    exa -l --sort=modified "$*" | less -reXF
-  }
+unalias la
+function la {
+  if type "exa" >/dev/null 2>&1; then
+    exa -la --header --git --sort=modified $*
+  else
+    ls -larth $*
+  fi
+}
+
+unalias ll
+function ll {
+  if type "exa" >/dev/null 2>&1; then
+    exa -l --header --git --sort=modified $*
+  else
+    ls -lrth $*
+  fi
+}
+
+function lt {
+  if type "exa" >/dev/null 2>&1; then
+    exa -l --git --header --sort=modified $* | tail -15
+  else
+    ls -larth $*
+  fi
+}
+
+function lss {
+  if type "exa" >/dev/null 2>&1; then
+    exa -l --header --git --sort=modified $* | less -reXF
+  else
+    ls -lrth $* | less -erXF
+  fi
+}
+
+if type "exa" >/dev/null 2>&1; then
+  alias ls="exa"
 else
   ls="ls --color=tty"
-  function la {
-    ls -larth "$*"
-  }
-  function lt {
-    ls -lrth "$*" | tail
-  }
-  function lss {
-    ls -lrth "$*" | less -reXF
-  }
 fi
 
 # Fix issue with apt <thing>* not working
 unsetopt no_match
 
+# pnpm
+export PNPM_HOME="/home/brad/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+#
 # Autostart tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
-
