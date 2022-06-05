@@ -1,2 +1,2 @@
 export ANDROID_SDK=$HOME/Android/sdk
-. "$HOME/.cargo/env"
+[ -d $HOME/.cargo ] && . "$HOME/.cargo/env"
