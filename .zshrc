@@ -157,6 +157,10 @@ else
   ls="ls --color=tty"
 fi
 
+if type "bat" >/dev/null 2>&1; then
+  alias cat="bat"
+fi
+
 # Fix issue with apt <thing>* not working
 unsetopt no_match
 
