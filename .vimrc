@@ -99,7 +99,7 @@ set syntax=on
 set nowrap
 map <leader>w <esc>:set wrap!<CR>
 set tabstop=2
-Set shiftwidth=2
+set shiftwidth=2
 set nocindent
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
