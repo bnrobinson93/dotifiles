@@ -9,7 +9,7 @@ let mapleader=" "
 """""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 Plug 'haishanh/night-owl.vim'
-Plug 'arcticicestudio/nord-vim'
+"Plug 'arcticicestudio/nord-vim'
 Plug 'tomasr/molokai'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -67,6 +67,7 @@ set noswapfile
 " Number the lines.
 set number
 set relativenumber
+map <C-l> <esc>:set relativenumber! number!<CR>
 
 " Show auto complete menus.
 set wildmenu
@@ -96,8 +97,9 @@ set hidden
 " Turn on syntax hightlighting.
 set syntax=on
 set nowrap
+map <leader>w <esc>:set wrap!<CR>
 set tabstop=2
-set shiftwidth=2
+Set shiftwidth=2
 set nocindent
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
@@ -247,11 +249,9 @@ set path+=**
 map <C-b> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeShowIgnoredStatus = 1
+"let g:NERDTreeShowIgnoredStatus = 1
 autocmd FileType nerdtree setlocal nolist
 
 "term
 "wincmd x
 "res 20
-
-
