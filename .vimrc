@@ -66,14 +66,30 @@ set noswapfile
 
 " Number the lines.
 set number
-set relativenumber
-map <C-l> <esc>:set relativenumber! number!<CR>
+map <C-l> <esc>:set number!<CR>
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
 
 " Show auto complete menus.
 set wildmenu
 
 " Make wildmenu behave like bash completion. Finding commands are so easy now.
 set wildmode=list:longest
+
+"Autocomplete (based on context, not language)
+"Default: ctrl+p (previous) ctrl+n (next)
+inoremap <leader><TAB> <C-p>
+
+"Allow for recursive fuzzy find (here and down)
+set path+=**
+"Fuzzyfind
+set autochdir
+set wildcharm=<Tab>
+nnoremap <C-p> :find **/*
+vnoremap <C-p> :<C-u>find **/*<C-R><C-W><Tab><CR>
 
 " Enable mouse pointing
 set mouse=a
@@ -227,14 +243,13 @@ vnoremap <silent> <C-/> :Commentary<cr>
 " Close current buffer
 noremap <silent> <C-q> :q!<CR>
 
-command Q q
-command W w
+"Allow capital Q to also quit, W to also write
+command -bar -bang Q q<bang>
+command -bar -bang W w<bang>
+command -bar -bang WQ wq<bang>
 
 " Select all
-map <C-a> <esc>ggVG<CR>
-
-"Allow for recursive fuzzy find (here and down)
-set path+=**
+map <leader>a <esc>ggVG<CR>
 
 "Filebrowser
 "nnoremap <leader>b :Lex<CR>
@@ -255,3 +270,6 @@ autocmd FileType nerdtree setlocal nolist
 "term
 "wincmd x
 "res 20
+
+"Disable Ex mode
+nnoremap Q <Nop>
