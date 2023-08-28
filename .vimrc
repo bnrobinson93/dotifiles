@@ -66,7 +66,8 @@ set noswapfile
 
 " Number the lines.
 set number
-map <C-l> <esc>:set number!<CR>
+set relativenumber
+map <C-l> <esc>:set relativenumber! number!<CR>
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
@@ -161,6 +162,7 @@ set laststatus=2
 let g:airline#extensions#tabline#enabled=1
 let airline#extensions#ale#error_symbol=1
 let airline#extensions#ale#warning_symbol=1
+let g:airline#extensions#tabline#fnamemod=':t'
 "let g:airline_theme='molokai'
 "let g:airline_theme='gruvbox'
 "let g:airline_theme='nord'
@@ -226,11 +228,11 @@ set termguicolors
 """"""""""""""""""""""""""
 
 " Browse airline tabs (buffers)
-:nnoremap <leader>l :ls<CR> 
-:nnoremap <leader>e :enew<CR>
-:nnoremap <leader>d :bd<CR>
-:nnoremap <leader>o :bnext<CR>
-:nnoremap <leader>i :bprevious<CR>
+:nnoremap <leader>bl :ls<CR> 
+:nnoremap <leader>t :enew<CR>
+:nnoremap <leader>bd :bp <BAR> bd #<CR>
+:nnoremap <leader>l :bnext<CR>
+:nnoremap <leader>h :bprevious<CR>
 
 " Map Control S for save
 noremap <silent> <C-S> :update<CR>
