@@ -23,6 +23,10 @@ return require('packer').startup(function(use)
 
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
+	use('nvim-treesitter/nvim-treesitter-context')
+
+    use{'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt=true}}
+
 	use('theprimeagen/harpoon')
 
 	use('mbbill/undotree')
