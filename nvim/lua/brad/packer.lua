@@ -1,5 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -7,18 +5,10 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'onsails/lspkind.nvim'
-
-  use 'hrsh7th/nvim-cmp'
-
+  -- Colors
   use('norcalli/nvim-colorizer.lua')
-
-  use({
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.3',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  })
-
+  use('nvim-treesitter/nvim-treesitter', { run = ':tsupdate' })
+  use('nvim-treesitter/nvim-treesitter-context')
   use({
     "oxfist/night-owl.nvim",
     as = 'night-owl',
@@ -27,48 +17,56 @@ return require('packer').startup(function(use)
     end
   })
 
-  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+  -- File Navigation
+  use('theprimeagen/harpoon')
+  use({
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.3',
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  })
 
-  use('nvim-treesitter/nvim-treesitter-context')
-
+  -- Status Line
   use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
 
-  use('theprimeagen/harpoon')
+  -- Make select boxes nicer
+  --  use "stevearc/dressing.nvim"
 
+  -- undo tree
   use('mbbill/undotree')
 
+  -- git
   use('tpope/vim-fugitive')
 
-  use('neovim/nvim-lspconfig')
+  -- VSCode-like junk
+  use "themaxmarchuk/tailwindcss-colors.nvim"
+  use { 'MunifTanjim/prettier.nvim',
+    requires = { 'jose-elias-alvarez/null-ls.nvim' }
+  }
 
-  use('jose-elias-alvarez/null-ls.nvim')
-
-  use('MunifTanjim/prettier.nvim')
-
+  -- LSP
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     requires = {
-      --- Uncomment these if you want to manage LSP servers from neovim
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
 
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lsp-signature-help' },
       { 'L3MON4D3/LuaSnip' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'onsails/lspkind.nvim' },
+
+      -- Snippets
+      { 'L3MON4D3/LuaSnip' },
+      { 'rafamadriz/friendly-snippets' },
     }
-  }
-  use {
-    "themaxmarchuk/tailwindcss-colors.nvim",
-    -- load only on require("tailwindcss-colors")
-    module = "tailwindcss-colors",
-    -- run the setup function after plugin is loaded
-    config = function()
-      -- pass config options here (or nothing to use defaults)
-      require("tailwindcss-colors").setup()
-    end
   }
 end)
