@@ -17,6 +17,14 @@ return require('packer').startup(function(use)
     end
   })
 
+  -- Commentary
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
   -- File Navigation
   use('theprimeagen/harpoon')
   use({
@@ -29,7 +37,7 @@ return require('packer').startup(function(use)
   use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
 
   -- Make select boxes nicer
-  --  use "stevearc/dressing.nvim"
+  use "stevearc/dressing.nvim"
 
   -- undo tree
   use('mbbill/undotree')
