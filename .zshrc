@@ -1,6 +1,11 @@
 #!/usr/bin/zsh -f
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Autostart tmux
+export TERM=xterm-256color
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -102,7 +107,7 @@ export MANPATH="/usr/local/man:$MANPATH"
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='vi'
+   export EDITOR='nvim'
 fi
 
 prompt_context() {
@@ -115,7 +120,7 @@ export ANDROID_SDK=$HOME/Android/Sdk
 export PATH=~/.npm-global/bin:$ANDROID_SDK/platform-tools:$PATH
 
 grep="grep --color"
-alias vi="vim"
+alias vi="nvim"
 
 unalias la
 function la {
@@ -160,6 +165,10 @@ fi
 if type "bat" >/dev/null 2>&1; then
   alias cat="bat"
 fi
+if type "nala" >/dev/null 2>&1; then
+  alias sudo='sudo '
+  alias apt="nala"
+fi
 
 # Fix issue with apt <thing>* not working
 unsetopt no_match
@@ -167,8 +176,14 @@ unsetopt no_match
 # pnpm
 export PNPM_HOME="/home/brad/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-#
-# Autostart tmux
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
-fi
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
+
+# bun completions
+[ -s "/home/brad/.bun/_bun" ] && source "/home/brad/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
