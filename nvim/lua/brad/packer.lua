@@ -45,7 +45,19 @@ return require('packer').startup(function(use)
   -- git
   use('tpope/vim-fugitive')
 
-  -- VSCode-like junk
+  use "mattn/emmet-vim"
+
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+  use { "windwp/nvim-ts-autotag",
+    config = function() require('nvim-ts-autotag').setup {} end
+  }
+
+  use 'tpope/vim-surround'
+
   use "themaxmarchuk/tailwindcss-colors.nvim"
   use { 'MunifTanjim/prettier.nvim',
     requires = { 'jose-elias-alvarez/null-ls.nvim' }
