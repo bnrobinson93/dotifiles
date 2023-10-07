@@ -1,7 +1,12 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
+local status_ok, packer = pcall(require, 'packer')
+if not status_ok then
+  return
+end
+
+return packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
@@ -24,6 +29,7 @@ return require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- File Navigation
   use('theprimeagen/harpoon')
@@ -53,14 +59,16 @@ return require('packer').startup(function(use)
   }
 
   use { "windwp/nvim-ts-autotag",
-    config = function() require('nvim-ts-autotag').setup {} end
+    config = function() require('nvim-ts-autotag').setup {} end,
+    ft = { "javascript", "typescript", "typescriptreact", "javascriptreact", "css", "markdown" }
   }
 
   use 'tpope/vim-surround'
 
   use "themaxmarchuk/tailwindcss-colors.nvim"
   use { 'MunifTanjim/prettier.nvim',
-    requires = { 'jose-elias-alvarez/null-ls.nvim' }
+    requires = { 'jose-elias-alvarez/null-ls.nvim' },
+    ft = { "javascript", "typescript", "typescriptreact", "javascriptreact", "css", "markdown" }
   }
 
   -- LSP
