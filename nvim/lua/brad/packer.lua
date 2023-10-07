@@ -65,11 +65,13 @@ return packer.startup(function(use)
 
   use 'tpope/vim-surround'
 
-  use "themaxmarchuk/tailwindcss-colors.nvim"
-  use { 'MunifTanjim/prettier.nvim',
-    requires = { 'jose-elias-alvarez/null-ls.nvim' },
+  use { "themaxmarchuk/tailwindcss-colors.nvim",
+    module = "tailwindcss-colors",
     ft = { "javascript", "typescript", "typescriptreact", "javascriptreact", "css", "markdown" }
   }
+
+  -- Prettier
+  use 'stevearc/conform.nvim'
 
   -- LSP
   use {
