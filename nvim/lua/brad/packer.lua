@@ -71,7 +71,10 @@ return packer.startup(function(use)
   }
 
   -- Prettier
-  use 'stevearc/conform.nvim'
+  use {
+    'stevearc/conform.nvim',
+    config = function() require('conform').setup() end
+  }
 
   -- LSP
   use {

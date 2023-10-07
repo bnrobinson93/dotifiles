@@ -23,6 +23,7 @@ conform.setup({
 })
 
 vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
+  vim.notify("Formatting with conform")
   conform.format({
     lsp_callback = true,
     async = false,
