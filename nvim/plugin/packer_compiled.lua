@@ -75,7 +75,7 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["Comment.nvim"] = {
-    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0" },
+    config = { "\27LJ\2\n|\0\0\5\0\a\0\0146\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\5€6\2\3\0009\2\4\2'\4\5\0B\2\2\1K\0\1\0009\2\6\1B\2\1\1K\0\1\0\nsetup\26Unable to load Commit\vnotify\bvim\fComment\frequire\npcall\0" },
     loaded = true,
     path = "/home/brad/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
@@ -116,7 +116,7 @@ _G.packer_plugins = {
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["conform.nvim"] = {
-    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fconform\frequire\0" },
+    config = { "\27LJ\2\n}\0\0\5\0\a\0\0146\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\a€6\2\3\0009\2\4\2'\4\5\0B\2\2\0019\2\6\1B\2\1\1K\0\1\0K\0\1\0\nsetup\27Unable to load conform\vnotify\bvim\fconform\frequire\npcall\0" },
     loaded = true,
     path = "/home/brad/.local/share/nvim/site/pack/packer/start/conform.nvim",
     url = "https://github.com/stevearc/conform.nvim"
@@ -173,7 +173,7 @@ _G.packer_plugins = {
     url = "https://github.com/oxfist/night-owl.nvim"
   },
   ["nvim-autopairs"] = {
-    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
+    config = { "\27LJ\2\n‰\1\0\0\5\0\a\0\0156\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\5€6\2\3\0009\2\4\2'\4\5\0B\2\2\1K\0\1\0009\2\6\0014\4\0\0B\2\2\1K\0\1\0\nsetup\28Unable to load autopair\vnotify\bvim\19nvim-autopairs\frequire\npcall\0" },
     loaded = true,
     path = "/home/brad/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
@@ -204,7 +204,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
   },
   ["nvim-ts-autotag"] = {
-    config = { "\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\20nvim-ts-autotag\frequire\0" },
+    config = { "\27LJ\2\n‘\1\0\0\5\0\a\0\0156\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\5€6\2\3\0009\2\4\2'\4\5\0B\2\2\1K\0\1\0009\2\6\0014\4\0\0B\2\2\1K\0\1\0\nsetup#Unable to load nvim-ts-autotag\vnotify\bvim\20nvim-ts-autotag\frequire\npcall\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -290,32 +290,32 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
+-- Config for: conform.nvim
+time([[Config for conform.nvim]], true)
+try_loadstring("\27LJ\2\n}\0\0\5\0\a\0\0146\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\a€6\2\3\0009\2\4\2'\4\5\0B\2\2\0019\2\6\1B\2\1\1K\0\1\0K\0\1\0\nsetup\27Unable to load conform\vnotify\bvim\fconform\frequire\npcall\0", "config", "conform.nvim")
+time([[Config for conform.nvim]], false)
 -- Config for: night-owl
 time([[Config for night-owl]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme night-owl\bcmd\bvim\0", "config", "night-owl")
 time([[Config for night-owl]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+try_loadstring("\27LJ\2\n‰\1\0\0\5\0\a\0\0156\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\5€6\2\3\0009\2\4\2'\4\5\0B\2\2\1K\0\1\0009\2\6\0014\4\0\0B\2\2\1K\0\1\0\nsetup\28Unable to load autopair\vnotify\bvim\19nvim-autopairs\frequire\npcall\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: conform.nvim
-time([[Config for conform.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fconform\frequire\0", "config", "conform.nvim")
-time([[Config for conform.nvim]], false)
 -- Config for: Comment.nvim
 time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+try_loadstring("\27LJ\2\n|\0\0\5\0\a\0\0146\0\0\0006\2\1\0'\3\2\0B\0\3\3\14\0\0\0X\2\5€6\2\3\0009\2\4\2'\4\5\0B\2\2\1K\0\1\0009\2\6\1B\2\1\1K\0\1\0\nsetup\26Unable to load Commit\vnotify\bvim\fComment\frequire\npcall\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
 vim.cmd [[au FileType typescriptreact ++once lua require("packer.load")({'tailwindcss-colors.nvim', 'nvim-ts-autotag'}, { ft = "typescriptreact" }, _G.packer_plugins)]]
-vim.cmd [[au FileType typescript ++once lua require("packer.load")({'tailwindcss-colors.nvim', 'nvim-ts-autotag'}, { ft = "typescript" }, _G.packer_plugins)]]
 vim.cmd [[au FileType javascriptreact ++once lua require("packer.load")({'tailwindcss-colors.nvim', 'nvim-ts-autotag'}, { ft = "javascriptreact" }, _G.packer_plugins)]]
-vim.cmd [[au FileType javascript ++once lua require("packer.load")({'tailwindcss-colors.nvim', 'nvim-ts-autotag'}, { ft = "javascript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType css ++once lua require("packer.load")({'tailwindcss-colors.nvim', 'nvim-ts-autotag'}, { ft = "css" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'tailwindcss-colors.nvim', 'nvim-ts-autotag'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType css ++once lua require("packer.load")({'tailwindcss-colors.nvim', 'nvim-ts-autotag'}, { ft = "css" }, _G.packer_plugins)]]
+vim.cmd [[au FileType typescript ++once lua require("packer.load")({'tailwindcss-colors.nvim', 'nvim-ts-autotag'}, { ft = "typescript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType javascript ++once lua require("packer.load")({'tailwindcss-colors.nvim', 'nvim-ts-autotag'}, { ft = "javascript" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 

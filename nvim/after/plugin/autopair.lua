@@ -1,17 +1,18 @@
 local status_ok, npairs = pcall(require, 'nvim-autopairs')
 if not status_ok then
+  vim.notify 'Unable to load nvim autopairs'
   return
 end
 
-npairs.setup({
+npairs.setup {
   check_ts = true,
   ts_config = {
-    lua        = { 'string', 'source' },
+    lua = { 'string', 'source' },
     javascript = { 'string', 'template_string' },
-    typescript = { 'string', 'template_string' }
+    typescript = { 'string', 'template_string' },
   },
-  disable_filetype = { 'TelescopePrompt', 'vim' }
-})
+  disable_filetype = { 'TelescopePrompt', 'vim' },
+}
 
 local status_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
 if not status_ok then
@@ -23,7 +24,4 @@ if not status_ok then
   return
 end
 
-cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
-)
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

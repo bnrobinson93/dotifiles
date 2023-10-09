@@ -1,9 +1,12 @@
-local status_ok, conform = pcall(require, "conform")
-if not status_ok then return end
+local status_ok, conform = pcall(require, 'conform')
+if not status_ok then
+  vim.notify 'Unable to load conform'
+  return
+end
 
-conform.setup({
+conform.setup {
   formatters_by_ft = {
-    javascript = { "prettierd" },
+    javascript = { 'prettierd' },
     javascriptreact = { 'prettierd' },
     typescript = { 'prettierd' },
     typescriptreact = { 'prettierd' },
@@ -13,20 +16,20 @@ conform.setup({
     graphql = { 'prettierd' },
     yaml = { 'prettierd' },
     markdown = { 'prettierd' },
-    lua = { 'stylua' }
+    lua = { 'stylua' },
   },
   format_on_save = {
     lsp_callback = true,
     async = false,
-    timeout_ms = 500
-  }
-})
+    timeout_ms = 500,
+  },
+}
 
 vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
-  vim.notify("Formatting with conform")
-  conform.format({
+  vim.notify 'Formatting with conform'
+  conform.format {
     lsp_callback = true,
     async = false,
-    timeout_ms = 500
-  })
-end, { desc = "Format on file or range" })
+    timeout_ms = 500,
+  }
+end, { desc = 'Format on file or range' })

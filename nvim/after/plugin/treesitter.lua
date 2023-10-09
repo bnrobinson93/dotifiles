@@ -1,20 +1,16 @@
 local status_ok, ts = pcall(require, 'nvim-treesitter.configs')
 if not status_ok then
-  vim.notify("Unable to load treesitter")
+  vim.notify 'Unable to load treesitter'
   return
 end
 
 ts.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "javascript" },
+  ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'typescript', 'javascript' },
   sync_install = false,
   auto_install = false,
-  indent = {
-    enable = true
-  },
-  autotag = {
-    enable = true,
-  },
+  indent = { enable = true },
+  autotag = { enable = true },
   highlight = {
     enable = true,
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -29,11 +25,11 @@ ts.setup {
       init_selection = '<C-s>',
       node_incremental = '<C-s>',
       scope_incremental = false,
-      node_decremental = '<bs>'
-    }
+      node_decremental = '<bs>',
+    },
   },
   context_commentstring = {
     enable = true,
-    enable_autocmd = false
-  }
+    enable_autocmd = false,
+  },
 }
