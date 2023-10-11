@@ -27,12 +27,7 @@ return packer.startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = function()
-      local status_ok, comment = pcall(require, 'Comment')
-      if not status_ok then
-        vim.notify 'Unable to load Commit'
-        return
-      end
-      comment.setup()
+      require('Comment').setup()
     end,
   }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -46,7 +41,18 @@ return packer.startup(function(use)
   }
 
   -- Status Line
-  use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
+  use { 'nvim-lualine/lualine.nvim', requires = {
+    'nvim-tree/nvim-web-devicons',
+    'linrongbin16/lsp-progress.nvim',
+    opt = true,
+  } }
+  use {
+    'linrongbin16/lsp-progress.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lsp-progress').setup()
+    end,
+  }
 
   -- Make select boxes nicer
   use 'stevearc/dressing.nvim'
@@ -62,29 +68,28 @@ return packer.startup(function(use)
   use {
     'windwp/nvim-autopairs',
     config = function()
-      local status_ok, autopair = pcall(require, 'nvim-autopairs')
-      if not status_ok then
-        vim.notify 'Unable to load autopair'
-        return
-      end
-      autopair.setup {}
+      require('nvim-autopairs').setup {}
     end,
   }
 
   use {
     'windwp/nvim-ts-autotag',
     config = function()
-      local status_ok, autotag = pcall(require, 'nvim-ts-autotag')
-      if not status_ok then
-        vim.notify 'Unable to load nvim-ts-autotag'
-        return
-      end
-      autotag.setup {}
+      require('nvim-ts-autotag').setup {}
     end,
     ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'markdown' },
   }
-
   use 'tpope/vim-surround'
+
+  use {
+    'kylechui/nvim-surround',
+    tag = '*', -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require('nvim-surround').setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  }
 
   use {
     'themaxmarchuk/tailwindcss-colors.nvim',
@@ -96,12 +101,7 @@ return packer.startup(function(use)
   use {
     'stevearc/conform.nvim',
     config = function()
-      local status_ok, conform = pcall(require, 'conform')
-      if not status_ok then
-        vim.notify 'Unable to load conform'
-        conform.setup()
-        return
-      end
+      require('conform').setup()
     end,
   }
 
