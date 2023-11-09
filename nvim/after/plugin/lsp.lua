@@ -52,10 +52,10 @@ lsp.on_attach(function(_, bufnr)
   vim.keymap.set('n', '<leader>vd', function()
     vim.diagnostic.open_float()
   end, opts) -- Same as gl
-  vim.keymap.set('n', '[d', function()
+  vim.keymap.set('n', ']d', function()
     vim.diagnostic.goto_next()
   end, opts) -- default
-  vim.keymap.set('n', ']d', function()
+  vim.keymap.set('n', '[d', function()
     vim.diagnostic.goto_prev()
   end, opts) -- default
   vim.keymap.set('n', '<leader>vca', function()

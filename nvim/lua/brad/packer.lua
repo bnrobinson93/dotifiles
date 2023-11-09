@@ -15,13 +15,8 @@ return packer.startup(function(use)
   use 'norcalli/nvim-colorizer.lua'
   use('nvim-treesitter/nvim-treesitter', { run = ':tsupdate' })
   use 'nvim-treesitter/nvim-treesitter-context'
-  use {
-    'oxfist/night-owl.nvim',
-    as = 'night-owl',
-    config = function()
-      vim.cmd 'colorscheme night-owl'
-    end,
-  }
+  --[[ use { 'oxfist/night-owl.nvim', as = 'night-owl', } ]]
+  use { 'catppuccin/nvim', as = 'catppuccin' }
 
   -- Commentary
   use {

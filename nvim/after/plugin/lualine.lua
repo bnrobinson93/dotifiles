@@ -38,14 +38,15 @@ end
 lualine.setup {
   options = {
     icons_enabled = true,
-    theme = 'night-owl',
+    --[[ theme = 'night-owl', ]]
+    theme = 'catppuccin',
     --[[ section_separators = '',
     component_separators = '', ]]
     always_divide_middle = true,
   },
   sections = {
     lualine_a = { 'mode' },
-    lualine_b = { 'filename' },
+    lualine_b = { 'branch', 'diff', 'diagnostics', 'filename' },
     lualine_c = { clients_lsp, LspStatus },
   },
 }
