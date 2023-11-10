@@ -5,24 +5,27 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   exec tmux
 fi
 
-if [[ ! -d ${XDG_CONFIG_HOME:-$HOME/.config}/zsh ]]; then
-  mkdir ${XDG_CONFIG_HOME:-$HOME/.config}/zsh &>/dev/null
+loadDir=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
+if [[ ! -d ${loadDir} ]]; then
+  mkdir $loadDir &>/dev/null
 fi
+function add_zsh_plugin {
+  pluginStr="$1"
+  pluginName=`echo "$1" | cut -d/ -f2`
+  if [[ ! -a ${loadDir} ]]; then
+    git clone https://github.com/$pluginStr $loadDir/$pluginName
+  fi
+
+  source $loadDir/$pluginName
+}
+
 
 # Auto suggestions
-if [[ ! -a ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions ]]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions
-fi
-
-source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+add_zsh_plugin 'zsh/zsh-autosuggestions'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # Syntax highlighting
-if [[ ! -a ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting ]]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting
-fi
-
-source ${XDG_CONFIG_HOME:-~/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+add_zsh_plugin 'zsh/zsh-syntax-highlighting'
 ZSH_HIGHLIGHT_MAXLENGTH=300
 
 # This speeds up pasting w/ autosuggest
