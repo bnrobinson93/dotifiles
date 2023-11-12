@@ -19,7 +19,6 @@ function add_zsh_plugin {
   source $loadDir/$pluginName
 }
 
-
 # Auto suggestions
 add_zsh_plugin 'zsh/zsh-autosuggestions'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
