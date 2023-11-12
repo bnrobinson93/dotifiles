@@ -12,19 +12,19 @@ fi
 function add_zsh_plugin {
   pluginStr="$1"
   pluginName=`echo "$1" | cut -d/ -f2`
-  if [[ ! -a ${loadDir} ]]; then
+  if [[ ! -a ${loadDir}/$pluginName ]]; then
     git clone https://github.com/$pluginStr $loadDir/$pluginName
-  fi
+ fi
 
-  source $loadDir/$pluginName
+  source $loadDir/$pluginName/$pluginName.zsh
 }
 
 # Auto suggestions
-add_zsh_plugin 'zsh/zsh-autosuggestions'
+add_zsh_plugin 'zsh-users/zsh-autosuggestions'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # Syntax highlighting
-add_zsh_plugin 'zsh/zsh-syntax-highlighting'
+add_zsh_plugin 'zsh-users/zsh-syntax-highlighting'
 ZSH_HIGHLIGHT_MAXLENGTH=300
 
 # This speeds up pasting w/ autosuggest
