@@ -7,7 +7,7 @@ $git_status\
 $line_break\
 $jobs\
 $character"""
-format_right = """$all"""
+# format_right = """$all"""
 palette = "catppuccin_mocha"
 
 [character]

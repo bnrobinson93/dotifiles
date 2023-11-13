@@ -5,18 +5,21 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   exec tmux
 fi
 
-loadDir=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
-if [[ ! -d ${loadDir} ]]; then
-  mkdir $loadDir &>/dev/null
-fi
-function add_zsh_plugin {
-  pluginStr="$1"
-  pluginName=`echo "$1" | cut -d/ -f2`
-  if [[ ! -a ${loadDir}/$pluginName ]]; then
-    git clone https://github.com/$pluginStr $loadDir/$pluginName
- fi
+CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
+[[ ! -d ${CONFIG} ]] && mkdir $CONFIG &>/dev/null
 
-  source $loadDir/$pluginName/$pluginName.zsh
+function zsh_add_file() {
+  [ -f $CONFIG/$1 ] && source $CONFIG/$1
+}
+
+function add_zsh_plugin() {
+  pluginName=`echo "$1" | cut -d/ -f2`
+  if [[ -d ${CONFIG}/$pluginName ]]; then
+    zsh_add_file $pluginName/$pluginName.plugin
+    zsh_add_file $pluginName/$pluginName.zsh
+  else
+    git clone git@github.com:$1.git $CONFIG/$pluginName
+  fi
 }
 
 # Auto suggestions
