@@ -25,6 +25,8 @@ function add_zsh_plugin() {
 # Auto suggestions
 add_zsh_plugin 'zsh-users/zsh-autosuggestions'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# Tab autocomplete is case-insensitive
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Syntax highlighting
 add_zsh_plugin 'zsh-users/zsh-syntax-highlighting'
