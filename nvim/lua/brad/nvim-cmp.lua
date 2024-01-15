@@ -1,26 +1,27 @@
-local status_ok, cmp = pcall(require, 'cmp')
-if not status_ok then
-  vim.notify 'Unable to load cmp'
-  return
-end
-
-local status_ok2, lspkind = pcall(require, 'lspkind')
-if not status_ok2 then
-  vim.notify 'Unable to load lsp kind'
-  return
-end
-
-require 'luasnip.loaders.from_vscode'
-lspkind.init { preset = 'codicons' }
-
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
 return {
   'hrsh7th/nvim-cmp',
   dependencies = {
     'onsails/lspkind.nvim',
+    -- Autocompletion
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'saadparwaiz1/cmp_luasnip',
+    'hrsh7th/cmp-nvim-lua',
+    -- Snippets
+    'L3MON4D3/LuaSnip',
+    'rafamadriz/friendly-snippets',
   },
   config = function()
+    local cmp = require 'cmp'
+    local lspkind = require 'lspkind'
+
+    require 'luasnip.loaders.from_vscode'
+    lspkind.init { preset = 'codicons' }
+
+    local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
     cmp.setup {
       snippet = {
         expand = function(args)
@@ -33,18 +34,20 @@ return {
           mode = 'symbol_text',
           maxwidth = 50,
           ellipsis_char = '...',
+          symbol_map = { Codeium = '' },
         },
       },
       sources = cmp.config.sources {
+        { name = 'codeium' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' },
         { name = 'path' },
       },
-      preselect = 'item',
+      preselect = 'none',
       completion = {
-        completeopt = 'menu,menuone,noinsert',
+        completeopt = 'menu,menuone,noinsert,noselect',
       },
       experimental = {
         ghost_text = true,

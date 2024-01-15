@@ -1,5 +1,6 @@
 return {
   'stevearc/conform.nvim',
+  event = 'InsertEnter',
   keys = {
     {
       '<leader>f',
