@@ -15,17 +15,27 @@ end
 
 return {
   'nvim-lualine/lualine.nvim',
-  lazy = false,
-  opts = {
-    options = {
-      icons_enabled = true,
-      theme = 'catppuccin',
-      always_divide_middle = true,
-    },
-    sections = {
-      lualine_a = { 'mode' },
-      lualine_b = { 'filename', 'branch', 'diff', 'diagnostics' },
-      lualine_c = { lsp_names },
-    },
-  },
+  dependencies = { 'catppuccin/nvim' },
+  config = function()
+    local lualine = require 'lualine'
+    local lazy_status = require 'lazy.status'
+    lualine.setup {
+      options = {
+        icons_enabled = true,
+        theme = 'catppuccin',
+        always_divide_middle = true,
+      },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'filename', 'branch', 'diff', 'diagnostics' },
+        lualine_c = { lsp_names },
+        lualine_x = {
+          { lazy_status.updates, cond = lazy_status.has_updates, color = { fg = 'orange' } },
+          'encoding',
+          'fileformat',
+          'filetype',
+        },
+      },
+    }
+  end,
 }

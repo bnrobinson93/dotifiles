@@ -1,4 +1,5 @@
 return {
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
   'folke/trouble.nvim',
   'JoosepAlviste/nvim-ts-context-commentstring',
   'kylechui/nvim-surround',
