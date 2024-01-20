@@ -31,6 +31,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 # Syntax highlighting
 add_zsh_plugin 'zsh-users/zsh-syntax-highlighting'
 ZSH_HIGHLIGHT_MAXLENGTH=300
+setopt histignoredups
 
 # This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
