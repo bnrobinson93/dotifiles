@@ -7,7 +7,9 @@ return {
     'j-hui/fidget.nvim',
   },
   config = function()
-    require('fidget').setup {}
+    require('fidget').setup {
+      notification = { window = { winblend = 0 } },
+    }
     require('mason').setup()
     require('mason-lspconfig').setup {
       automatic_install = true,
