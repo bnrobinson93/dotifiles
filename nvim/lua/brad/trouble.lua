@@ -17,7 +17,6 @@ return {
       function()
         trouble.open()
         trouble.next { skip_groups = true, jump = true }
-        trouble.close()
       end,
       desc = 'Next trouble',
     },
@@ -26,7 +25,6 @@ return {
       function()
         trouble.open()
         trouble.previous { skip_groups = true, jump = true }
-        trouble.close()
       end,
       desc = 'Previous trouble',
     },
