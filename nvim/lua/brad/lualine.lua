@@ -15,7 +15,7 @@ end
 
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'catppuccin/nvim' },
+  dependencies = { 'catppuccin/nvim', 'nvim-tree/nvim-web-devicons' },
   config = function()
     local lualine = require 'lualine'
     local lazy_status = require 'lazy.status'
@@ -24,13 +24,15 @@ return {
         icons_enabled = true,
         theme = 'catppuccin',
         always_divide_middle = true,
+        section_separators = { left = '', right = '' },
+        component_separators = '|',
       },
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'filename', 'branch', 'diff', 'diagnostics' },
         lualine_c = { lsp_names },
         lualine_x = {
-          { lazy_status.updates, cond = lazy_status.has_updates, color = { fg = 'orange' } },
+          { lazy_status.updates, cond = lazy_status.has_updates, color = { fg = 'orange' }, separator = { right = '' }, left_padding = 2 },
           'encoding',
           'fileformat',
           'filetype',
