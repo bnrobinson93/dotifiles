@@ -6,15 +6,14 @@ return {
   'kylechui/nvim-surround',
   'mattn/emmet-vim',
   'mbbill/undotree',
-  'norcalli/nvim-colorizer.lua',
   'numToStr/Comment.nvim',
   'nvim-treesitter/nvim-treesitter-context',
   'stevearc/conform.nvim', -- prettier
   'stevearc/dressing.nvim',
-  'theprimeagen/harpoon',
   'tpope/vim-fugitive',
   'tpope/vim-surround',
   'windwp/nvim-autopairs',
+  'windwp/nvim-ts-autotag',
 
   {
     'nvim-treesitter/nvim-treesitter',
