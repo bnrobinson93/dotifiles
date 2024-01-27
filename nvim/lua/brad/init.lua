@@ -1,6 +1,5 @@
 return {
   { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
-  { 'NvChad/nvim-colorizer.lua', ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'markdown', 'html' } },
   'folke/trouble.nvim',
   'JoosepAlviste/nvim-ts-context-commentstring',
   'kylechui/nvim-surround',

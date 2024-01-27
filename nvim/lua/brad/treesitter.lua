@@ -19,6 +19,9 @@ return {
     require('lazy.core.loader').add_to_rtp(plugin)
     require 'nvim-treesitter.query_predicates'
   end,
+  config = function(_, opts)
+    require('nvim-treesitter.configs').setup(opts)
+  end,
   opts = {
     sync_install = false,
     auto_install = false,
@@ -61,7 +64,6 @@ return {
       enable_rename = true,
       enable_close = false,
       enable_close_on_slash = true,
-      filetypes = { 'html', 'xml', 'typescriptreact', 'javascriptreact' },
     },
   },
   keys = {
