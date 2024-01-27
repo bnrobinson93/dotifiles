@@ -2,56 +2,70 @@ vim.g.skip_ts_context_commentstring_module = true
 
 return {
   'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    'windwp/nvim-ts-autotag',
+  },
   version = false,
+  cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
   build = ':TSUpdate',
   event = { 'VeryLazy' },
-  lazy = false,
   init = function(plugin)
     -- https://www.lazyvim.org/plugins/treesitter
     -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
     -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
     -- no longer trigger the **nvim-treeitter** module to be loaded in time.
-    -- Luckily, the only thins that those plugins need are the custom queries, which we make available
+    -- Luckily, the only things that those plugins need are the custom queries, which we make available
     -- during startup.
     require('lazy.core.loader').add_to_rtp(plugin)
     require 'nvim-treesitter.query_predicates'
   end,
-  config = function(_, opts)
-    if type(opts.ensure_installed) == 'table' then
-      ---@type table<string, boolean>
-      local added = {}
-      opts.ensure_installed = vim.tbl_filter(function(lang)
-        if added[lang] then
-          return false
-        end
-        added[lang] = true
-        return true
-      end, opts.ensure_installed)
-    end
-    require('nvim-treesitter.configs').setup(opts)
-
-    require('treesitter-context').setup {
-      -- A list of parser names, or "all" (the five listed parsers should always be installed)
-      ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'typescript', 'javascript' },
-      sync_install = false,
-      auto_install = false,
-      indent = { enable = true },
-      autotag = { enable = true },
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
+  opts = {
+    sync_install = false,
+    auto_install = false,
+    indent = { enable = true },
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+    ensure_installed = {
+      'bash',
+      'diff',
+      'html',
+      'javascript',
+      'json',
+      'lua',
+      'luadoc',
+      'luap',
+      'markdown',
+      'markdown_inline',
+      'python',
+      'query',
+      'regex',
+      'tsx',
+      'typescript',
+      'vim',
+      'vimdoc',
+      'yaml',
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = '<C-space>',
+        node_incremental = '<C-space>',
+        scope_incremental = false,
+        node_decremental = '<bs>',
       },
-    }
-    require('nvim-treesitter.configs').setup {
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = '<C-s>',
-          node_incremental = '<C-s>',
-          scope_incremental = false,
-          node_decremental = '<bs>',
-        },
-      },
-    }
-  end,
+    },
+    autotag = {
+      enable = true,
+      enable_rename = true,
+      enable_close = false,
+      enable_close_on_slash = true,
+      filetypes = { 'html', 'xml', 'typescriptreact', 'javascriptreact' },
+    },
+  },
+  keys = {
+    { '<C-space>', desc = 'Increment selection' },
+    { '<bs>', desc = 'Decrement selection', mode = 'x' },
+  },
 }
