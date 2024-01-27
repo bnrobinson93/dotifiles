@@ -9,6 +9,7 @@ return {
     'hrsh7th/cmp-path',
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lua',
+    'windwp/nvim-autopairs',
     -- Snippets
     'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
@@ -63,5 +64,8 @@ return {
         ['<C-enter>'] = cmp.mapping.confirm(),
       },
     }
+
+    local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
   end,
 }
