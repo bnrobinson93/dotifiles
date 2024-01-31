@@ -98,14 +98,15 @@ return {
     },
     {
       '<leader>vws',
-      function()
-        vim.lsp.buf.workspace_symbol()
-      end,
+      --function()
+      --  vim.lsp.buf.workspace_symbol()
+      --end,
+      '<cmd>Telescope lsp_workspace_symbols<CR>',
     },
     {
       '<leader>vd',
       function()
-        vim.lsp.buf.open_float()
+        vim.diagnostic.open_float(0, { scope = 'cursor' })
       end,
     },
     {
