@@ -1,6 +1,7 @@
 [user]
 	name = Brad R
-	email = 31802085+bnrobinson93@users.noreply.github.com
+	email = bnrobinson93@gmail.com
+	signingKey = 30A92B0B77887D6E
 [push]
 	default = simple
 [alias]
