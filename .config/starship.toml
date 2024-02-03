@@ -39,13 +39,13 @@ disabled = true
 
 [git_status]
 ahead = "[ ](bold flamingo)"
-behind = "[󰳜 ](bold blue)"
+behind = "[ ](bold blue)"
 untracked = "[ ](bold yellow)"
-staged = "[✚ ](bold green)"
+staged = "[](bold green)"
 modified = "[● ](bold peach)"
-stashed = "[⍟ ](bold lavender)"
+stashed = "[󰦤 ](bold lavender)"
 deleted = ''
-renamed = "[→ ](bold rose)"
+renamed = "[→](bold rose)"
 format = '([ $all_status $ahead_behind]($style) )'
 
 [jobs]
