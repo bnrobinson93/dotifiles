@@ -19,3 +19,13 @@ Contains all the dotfiles that I use in my development environment.
 - `stow -t $HOME dotfiles`
 - `tmux source-file ~/.tmux.conf`
 - `chsh -s /bin/zsh`
+
+## Note for WSL
+In WSL, the locale is not updated by default. Ensure it's updated to use UTF-8 and English.
+
+Run the below, then restart the terminal/tmux session.
+
+```sh
+sudo apt-get install language-pack-en language-pack-en-base manpages
+sudo update-locale LANG=en_US.UTF8
+```
