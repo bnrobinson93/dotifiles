@@ -38,12 +38,12 @@ format = """on [$symbol $branch(:$remote_branch)]($style)"""
 disabled = true
 
 [git_status]
-ahead = "[ ](bold flamingo)"
-behind = "[ ](bold blue)"
-untracked = "[ ](bold yellow)"
+ahead = "[](bold flamingo)"
+behind = "[](bold blue)"
+untracked = "[](bold yellow)"
 staged = "[](bold green)"
-modified = "[● ](bold peach)"
-stashed = "[󰦤 ](bold lavender)"
+modified = "[●](bold peach)"
+stashed = "[󰦤](bold lavender)"
 deleted = ''
 renamed = "[→](bold rose)"
 format = '([ $all_status $ahead_behind]($style) )'
