@@ -1,4 +1,4 @@
 **/.git
 .**/**/.git
-nvim/plugin/**
-tmux/plugins/**
+.config/nvim/plugin/**
+.config/tmux/plugins/**
