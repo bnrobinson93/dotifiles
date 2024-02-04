@@ -32,6 +32,17 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 add_zsh_plugin 'zsh-users/zsh-syntax-highlighting'
 ZSH_HIGHLIGHT_MAXLENGTH=300
 setopt histignoredups
+SAVEHIST=10000 # Number of entries
+HISTSIZE=10000
+HISTFILE=~/.history # File
+setopt histignoredups
+setopt APPEND_HISTORY # Don't erase history
+setopt EXTENDED_HISTORY # Add additional data to history like timestamp
+setopt INC_APPEND_HISTORY # Add immediately
+setopt HIST_FIND_NO_DUPS # Don't show duplicates in search
+setopt HIST_IGNORE_SPACE # Don't preserve spaces. You may want to turn it off
+setopt NO_HIST_BEEP # Don't beep
+setopt SHARE_HISTORY # Share history between session/terminals
 
 # This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
