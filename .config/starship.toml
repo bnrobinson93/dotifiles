@@ -40,6 +40,7 @@ disabled = true
 [git_status]
 ahead = "[](bold flamingo)"
 behind = "[](bold blue)"
+conflicted = '[](bold red)'
 untracked = "[](bold yellow)"
 staged = "[](bold green)"
 modified = "[●](bold peach)"
