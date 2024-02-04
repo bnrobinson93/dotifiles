@@ -87,7 +87,7 @@ alias vi=$EDITOR
 #unalias la
 function la {
   if type "exa" >/dev/null 2>&1; then
-    exa -la --header --git --sort=modified $*
+    exa -la -h -smod $*
   else
     ls -larth $*
   fi
@@ -96,7 +96,7 @@ function la {
 #unalias ll
 function ll {
   if type "exa" >/dev/null 2>&1; then
-    exa -l --header --git --sort=modified $*
+    exa -l -h -smod $*
   else
     ls -lrth $*
   fi
@@ -104,7 +104,7 @@ function ll {
 
 function lt {
   if type "exa" >/dev/null 2>&1; then
-    exa -l --git --header --sort=modified $* | tail -15
+    exa -l -h -smod $* | tail -15
   else
     ls -larth $*
   fi
@@ -112,7 +112,7 @@ function lt {
 
 function lss {
   if type "exa" >/dev/null 2>&1; then
-    exa -l --header --git --sort=modified $* | less -reXF
+    exa -l -h -smod $* | less -reXF
   else
     ls -lrth $* | less -erXF
   fi
