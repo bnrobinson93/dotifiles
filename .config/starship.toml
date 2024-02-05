@@ -47,7 +47,7 @@ modified = "[ ](bold peach)"
 stashed = "[󰦤 ](bold lavender)"
 deleted = ''
 renamed = "[󰳟 ](bold rose)"
-format = '([ $all_status $ahead_behind]($style) )'
+format = '([ $all_status$ahead_behind]($style) )'
 
 [jobs]
 style = "surface2"
