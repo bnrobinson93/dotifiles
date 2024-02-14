@@ -9,3 +9,5 @@
 	helper = cache --timeout=3600
 [init]
 	defaultBranch = main
+[maintenance]
+	repo = /home/brad/.dotfiles
