@@ -22,6 +22,9 @@ function add_zsh_plugin() {
   fi
 }
 
+# oh-my-zsh sudo plugin
+add_zsh_plugin 'hcgraf/zsh-sudo'
+
 # Auto suggestions
 add_zsh_plugin 'zsh-users/zsh-autosuggestions'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
