@@ -22,8 +22,8 @@ function add_zsh_plugin() {
   fi
 }
 
-# oh-my-zsh sudo plugin
-add_zsh_plugin 'hcgraf/zsh-sudo'
+#  sudo plugin
+add_zsh_plugin 'none9632/zsh-sudo'
 
 # Auto suggestions
 add_zsh_plugin 'zsh-users/zsh-autosuggestions'
