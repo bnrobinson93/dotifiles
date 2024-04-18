@@ -61,6 +61,7 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
 eval "$(starship init zsh)"
+eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
 
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
