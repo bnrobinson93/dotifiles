@@ -7,6 +7,7 @@ end
 return {
   'folke/trouble.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  event = 'VeryLazy',
   keys = {
     { '<leader>tt', '<cmd>TroubleToggle<cr>', desc = 'Toggle trouble' },
     { '<leader>twd', '<cmd>Trouble workspace_diagnostics<cr>', desc = 'Toggle trouble workspace_diagnostics' },

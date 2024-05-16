@@ -4,6 +4,14 @@ return {
     'nvim-lua/plenary.nvim',
   },
   cmd = 'Telescope',
+  opts = {
+    defaults = {
+      mappings = {
+        i = { ['<c-t>'] = require('trouble.providers.telescope').open_with_trouble },
+        n = { ['<c-t>'] = require('trouble.providers.telescope').open_with_trouble },
+      },
+    },
+  },
   keys = {
     { '<C-p>', '<cmd>Telescope git_files<cr>', desc = 'Git files' },
     { '<leader>pf', '<cmd>Telescope find_files<cr>', desc = 'Find files' },
