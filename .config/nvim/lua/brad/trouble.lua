@@ -1,9 +1,3 @@
-local status_ok, trouble = pcall(require, 'trouble')
-if not status_ok then
-  vim.notify 'Unable to load trouble'
-  return
-end
-
 return {
   'folke/trouble.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -16,16 +10,20 @@ return {
     {
       ']d',
       function()
+        local trouble = require 'trouble'
         trouble.open()
         trouble.next { skip_groups = true, jump = true }
+        trouble.close()
       end,
       desc = 'Next trouble',
     },
     {
       '[d',
       function()
+        local trouble = require 'trouble'
         trouble.open()
         trouble.previous { skip_groups = true, jump = true }
+        trouble.close()
       end,
       desc = 'Previous trouble',
     },
