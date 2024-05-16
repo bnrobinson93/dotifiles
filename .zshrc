@@ -1,38 +1,22 @@
-#!/usr/bin/zsh -f
 # Autostart tmux
 export TERM=xterm-256color
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
 
-CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
-[[ ! -d ${CONFIG} ]] && mkdir $CONFIG &>/dev/null
+# Created by Zap installer
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && \
+  source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" || \
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+plug "zsh-users/zsh-autosuggestions"
+#plug "zap-zsh/supercharge"
+#plug "zap-zsh/zap-prompt"
+plug "zsh-users/zsh-syntax-highlighting"
+plug 'none9632/zsh-sudo'
 
-function zsh_add_file() {
-  [ -f $CONFIG/$1 ] && source $CONFIG/$1
-}
-
-function add_zsh_plugin() {
-  pluginName=`echo "$1" | cut -d/ -f2`
-  if [[ -d ${CONFIG}/$pluginName ]]; then
-    zsh_add_file $pluginName/$pluginName.plugin
-    zsh_add_file $pluginName/$pluginName.zsh
-  else
-    git clone git@github.com:$1.git $CONFIG/$pluginName
-  fi
-}
-
-#  sudo plugin
-add_zsh_plugin 'none9632/zsh-sudo'
-
-# Auto suggestions
-add_zsh_plugin 'zsh-users/zsh-autosuggestions'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # Tab autocomplete is case-insensitive
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-
-# Syntax highlighting
-add_zsh_plugin 'zsh-users/zsh-syntax-highlighting'
 ZSH_HIGHLIGHT_MAXLENGTH=300
 setopt histignoredups
 SAVEHIST=10000 # Number of entries
@@ -61,7 +45,6 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
 eval "$(starship init zsh)"
-eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
 
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
@@ -153,3 +136,12 @@ export PATH=$PATH:$HOME/.pulumi/bin
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# auto-cpufreq
+eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/brad/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
