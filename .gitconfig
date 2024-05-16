@@ -10,4 +10,4 @@
 [init]
 	defaultBranch = main
 [maintenance]
-	repo = /home/brad/.dotfiles
+	repo = $HOME/.dotfiles
