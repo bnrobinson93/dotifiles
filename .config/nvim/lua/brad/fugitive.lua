@@ -1,6 +1,6 @@
 return {
   'tpope/vim-fugitive',
-  cond = require('telescope.utils').get_os_command_output({ 'git', 'rev-parse', '--is-inside-work-tree'
+  cond = require('telescope.utils').get_os_command_output { 'git', 'rev-parse', '--is-inside-work-tree' },
   keys = {
     { '<leader>gs', '<cmd>Git<cr>', desc = '[G]it [S]tatus' },
     { '<leader>gd', '<cmd>Gvdiffsplit!<cr>', desc = '[G]it [D]iff in vertical split' },
