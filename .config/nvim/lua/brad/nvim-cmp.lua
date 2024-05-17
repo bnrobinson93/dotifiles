@@ -21,6 +21,7 @@ return {
     lspkind.init { preset = 'codicons' }
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
+    local cmp_insert = { behavior = cmp.SelectBehavior.Insert }
 
     cmp.setup {
       snippet = {
@@ -40,10 +41,10 @@ return {
       sources = cmp.config.sources {
         { name = 'codeium' },
         { name = 'nvim_lsp' },
+        { name = 'path' },
+        { name = 'buffer', keyword_length = 4 },
         { name = 'luasnip' },
         { name = 'nvim_lsp_signature_help' },
-        { name = 'buffer' },
-        { name = 'path' },
       },
       preselect = 'none',
       completion = {
@@ -57,9 +58,10 @@ return {
         documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert {
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm { select = true },
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_insert),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_insert),
+        ['<C-y>'] = cmp.mapping.confirm({ cmp_select, select = true }, { 'i', 'c' }),
+        ['<Tab>'] = cmp.mapping.confirm({ cmp_select, select = true }, { 'i', 'c' }),
       },
     }
   end,
