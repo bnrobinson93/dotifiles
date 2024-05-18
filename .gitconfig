@@ -4,10 +4,13 @@
 [push]
 	default = simple
 [alias]
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
+  l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
+  s = status --short
 [credential]
 	helper = cache --timeout=3600
 [init]
 	defaultBranch = main
 [maintenance]
 	repo = $HOME/.dotfiles
+[core]
+	autocrlf = input
