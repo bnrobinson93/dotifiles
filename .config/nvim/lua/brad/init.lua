@@ -46,16 +46,4 @@ return {
     'themaxmarchuk/tailwindcss-colors.nvim',
     ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'markdown' },
   },
-  {
-    'laytan/tailwind-sorter.nvim',
-    ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'markdown', 'html' },
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
-    build = 'cd formatter && npm i && npm run build',
-    config = function()
-      require('tailwind-sorter').setup {
-        on_save_enabled = false, -- If `true`, automatically enables on save sorting.
-        on_save_pattern = { '*.html', '*.js', '*.jsx', '*.tsx', '*.twig', '*.hbs', '*.php', '*.heex', '*.astro' }, -- The file patterns to watch and sort.
-      }
-    end,
-  },
 }
