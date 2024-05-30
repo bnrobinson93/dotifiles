@@ -7,8 +7,8 @@ return {
   opts = {
     defaults = {
       mappings = {
-        i = { ['<c-t>'] = require('trouble.providers.telescope').open_with_trouble },
-        n = { ['<c-t>'] = require('trouble.providers.telescope').open_with_trouble },
+        i = { ['<c-t>'] = require('trouble.sources.telescope').open },
+        n = { ['<c-t>'] = require('trouble.sources.telescope').open },
       },
     },
   },
