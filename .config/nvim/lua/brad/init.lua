@@ -13,6 +13,7 @@ return {
   'tpope/vim-surround',
   'windwp/nvim-autopairs',
   'windwp/nvim-ts-autotag',
+  'folke/zen-mode.nvim',
 
   {
     'nvim-treesitter/nvim-treesitter',
