@@ -137,7 +137,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # auto-cpufreq
-eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
+# eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/brad/.zshrc'
