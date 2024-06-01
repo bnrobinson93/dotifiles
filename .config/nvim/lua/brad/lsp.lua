@@ -13,7 +13,7 @@ return {
     require('mason').setup()
     require('mason-lspconfig').setup {
       automatic_install = true,
-      ensure_installed = { 'tsserver', 'eslint', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
+      ensure_installed = { 'tsserver', 'eslint', 'bashls', 'cssls', 'tailwindcss' },
       handlers = {
         function(name)
           require('lspconfig')[name].setup {}
