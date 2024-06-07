@@ -9,7 +9,8 @@ return {
   'nvim-treesitter/nvim-treesitter-context',
   'stevearc/conform.nvim', -- prettier
   'stevearc/dressing.nvim',
-  'tpope/vim-fugitive',
+  -- 'tpope/vim-fugitive',
+  'NeogitOrg/neogit',
   'tpope/vim-surround',
   'windwp/nvim-autopairs',
   'windwp/nvim-ts-autotag',

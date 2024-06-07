@@ -2,9 +2,9 @@ return {
   'NeogitOrg/neogit',
   dependencies = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim', 'nvim-telescope/telescope.nvim' },
   cond = require('telescope.utils').get_os_command_output { 'git', 'rev-parse', '--is-inside-work-tree' },
+  cmd = 'Neogit',
   config = true,
   opts = {
-    disable_signs = true,
     integrations = {
       diffview = true,
       telescope = true,
