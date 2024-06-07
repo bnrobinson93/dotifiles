@@ -1,12 +1,10 @@
 return {
   'folke/trouble.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  event = 'VeryLazy',
   keys = {
-    { '<leader>tt', '<cmd>TroubleToggle<cr>', desc = 'Toggle trouble' },
-    { '<leader>twd', '<cmd>Trouble workspace_diagnostics<cr>', desc = 'Toggle trouble workspace_diagnostics' },
-    { '<leader>tWd', '<cmd>Trouble document_diagnostics<cr>', desc = 'Toggle trouble document_diagnostics' },
-    { '<leader>tq', '<cmd>Trouble quickfix<cr>', desc = 'Toggle trouble quickfix' },
+    { '<leader>tt', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Toggle trouble' },
+    { '<leader>td', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Toggle buffer diagnostics' },
+    { '<leader>tq', '<cmd>Trouble qflist toggle<cr>', desc = 'Toggle trouble quickfix' },
     {
       ']d',
       function()
