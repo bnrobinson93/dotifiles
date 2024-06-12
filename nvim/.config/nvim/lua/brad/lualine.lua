@@ -32,7 +32,13 @@ return {
         lualine_b = { 'filename', 'branch', 'diff', 'diagnostics' },
         lualine_c = { lsp_names },
         lualine_x = {
-          { lazy_status.updates, cond = lazy_status.has_updates, color = { fg = 'orange' }, separator = { right = '' }, left_padding = 2 },
+          {
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
+            color = { fg = 'black', bg = 'pink' },
+            separator = { left = '', right = '' },
+            left_padding = 2,
+          },
           'encoding',
           'fileformat',
           'filetype',
