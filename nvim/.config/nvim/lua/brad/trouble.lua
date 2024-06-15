@@ -9,9 +9,9 @@ return {
       ']d',
       function()
         local trouble = require 'trouble'
-        trouble.open()
+        trouble.open { mode = 'diagnostics' }
         trouble.next { skip_groups = true, jump = true }
-        trouble.close()
+        trouble.close { mode = 'diagnostics' }
       end,
       desc = 'Next trouble',
     },
@@ -19,9 +19,9 @@ return {
       '[d',
       function()
         local trouble = require 'trouble'
-        trouble.open()
+        trouble.open { mode = 'diagnostics' }
         trouble.previous { skip_groups = true, jump = true }
-        trouble.close()
+        trouble.close { mode = 'diagnostics' }
       end,
       desc = 'Previous trouble',
     },
