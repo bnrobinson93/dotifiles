@@ -81,9 +81,12 @@ return {
       javascript = 'eslint_d',
     }
 
+    -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
+    -- Also hides the text at the bottom, see https://github.com/neovim/neovim/issues/20457#issuecomment-1266782345
     vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
       config = config or {}
       config.focus_id = ctx.method
+      config.border = 'rounded'
       if not (result and result.contents) then
         return
       end
@@ -94,11 +97,6 @@ return {
       end
       return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
     end
-
-    -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
-    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-      border = 'rounded',
-    })
   end,
   keys = {
     {
