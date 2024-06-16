@@ -2,16 +2,15 @@ return {
   'folke/trouble.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   keys = {
-    { '<leader>tt', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Toggle trouble' },
-    { '<leader>td', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Toggle buffer diagnostics' },
+    { '<leader>tt', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Toggle buffer diagnostics' },
+    { '<leader>td', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Toggle trouble' },
     { '<leader>tq', '<cmd>Trouble qflist toggle<cr>', desc = 'Toggle trouble quickfix' },
     {
       ']d',
       function()
         local trouble = require 'trouble'
-        trouble.open { mode = 'diagnostics' }
-        trouble.next { skip_groups = true, jump = true }
-        trouble.close { mode = 'diagnostics' }
+        trouble.next { mode = 'diagnostics', skip_groups = true, jump = true }
+        trouble.close()
       end,
       desc = 'Next trouble',
     },
@@ -19,9 +18,8 @@ return {
       '[d',
       function()
         local trouble = require 'trouble'
-        trouble.open { mode = 'diagnostics' }
-        trouble.previous { skip_groups = true, jump = true }
-        trouble.close { mode = 'diagnostics' }
+        trouble.prev { mode = 'diagnostics', skip_groups = true, jump = true }
+        trouble.close()
       end,
       desc = 'Previous trouble',
     },
