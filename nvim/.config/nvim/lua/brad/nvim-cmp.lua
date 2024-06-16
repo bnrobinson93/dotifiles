@@ -46,7 +46,7 @@ return {
         { name = 'luasnip' },
         { name = 'nvim_lsp_signature_help' },
       },
-      preselect = 'none',
+      preselect = 'item',
       completion = {
         completeopt = 'menu,menuone,noinsert,noselect',
       },
@@ -54,7 +54,7 @@ return {
         ghost_text = true,
       },
       window = {
-        --completion = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert {
@@ -62,6 +62,7 @@ return {
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_insert),
         ['<C-y>'] = cmp.mapping.confirm({ cmp_select, select = true }, { 'i', 'c' }),
         ['<Tab>'] = cmp.mapping.confirm({ cmp_select, select = true }, { 'i', 'c' }),
+        ['<C-e>'] = cmp.mapping.abort(),
       },
     }
   end,
