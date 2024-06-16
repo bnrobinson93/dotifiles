@@ -14,18 +14,24 @@ return {
     require('mason').setup()
     require('mason-lspconfig').setup {
       automatic_install = true,
-      ensure_installed = { 'tsserver', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
+      ensure_installed = { 'vtsls', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
       handlers = {
         function(name)
           require('lspconfig')[name].setup {}
         end,
 
-        ['tsserver'] = function()
+        --[[ ['tsserver'] = function()
           local lspconfig = require 'lspconfig'
           local util = require 'lspconfig.util'
           lspconfig.tsserver.setup {
             root_dir = util.root_pattern '.git',
+            preferences = { includeCompletionsForModuleExports = false },
           }
+        end, ]]
+
+        ['vtsls'] = function()
+          local lspconfig = require 'lspconfig'
+          lspconfig.vtsls.setup {}
         end,
 
         ['tailwindcss'] = function()
@@ -74,6 +80,20 @@ return {
       typescript = 'eslint_d',
       javascript = 'eslint_d',
     }
+
+    vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
+      config = config or {}
+      config.focus_id = ctx.method
+      if not (result and result.contents) then
+        return
+      end
+      local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+      markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
+      if vim.tbl_isempty(markdown_lines) then
+        return
+      end
+      return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
+    end
 
     -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
