@@ -122,7 +122,7 @@ return {
     -- { '[d', function() vim.diagnostic.goto_prev() end },
     -- { ']d', function() vim.diagnostic.goto_next() end },
     {
-      '<C-h>',
+      '<F1>',
       function()
         vim.lsp.buf.signature_help()
       end,
@@ -144,7 +144,7 @@ return {
       desc = '[V]iew [D]iagnostic',
     },
     {
-      '<C-Enter>',
+      '<C-Space>',
       function()
         vim.lsp.buf.code_action()
       end,
