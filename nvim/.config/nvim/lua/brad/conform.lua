@@ -27,7 +27,7 @@ return {
       json = { 'prettierd' },
       graphql = { 'prettierd' },
       yaml = { 'prettierd' },
-      markdown = { 'prettierd' },
+      markdown = { 'mdfmt' },
       lua = { 'stylua' },
     },
     format_on_save = {
