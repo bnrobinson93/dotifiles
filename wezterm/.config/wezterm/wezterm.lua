@@ -28,7 +28,7 @@ return {
 	window_background_image = "./grainy (cat).jpg",
 	macos_window_background_blur = 90,
 	color_scheme = "Catppuccin Mocha",
-	font = wezterm.font("Dank Mono Nerd Font"),
+	font = wezterm.font_with_fallback({ "DankMono Nerd Font", "FiraCode Nerd Font" }),
 	font_size = 14,
 	-- enable_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
