@@ -1,7 +1,10 @@
 return {
   'hrsh7th/nvim-cmp',
+  event = 'BufEnter',
   dependencies = {
     'onsails/lspkind.nvim',
+    -- AI
+    -- 'Exafunction/codeium.nvim',
     -- Autocompletion
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lsp-signature-help',
@@ -17,11 +20,10 @@ return {
     local cmp = require 'cmp'
     local lspkind = require 'lspkind'
 
-    require 'luasnip.loaders.from_vscode'
+    require 'luasnip/loaders/from_vscode'
     lspkind.init { preset = 'codicons' }
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
-    local cmp_insert = { behavior = cmp.SelectBehavior.Insert }
 
     cmp.setup {
       snippet = {
@@ -45,6 +47,8 @@ return {
         { name = 'buffer', keyword_length = 4 },
         { name = 'luasnip' },
         { name = 'nvim_lsp_signature_help' },
+        { name = 'buffer' },
+        { name = 'path' },
       },
       preselect = 'item',
       completion = {
@@ -58,11 +62,10 @@ return {
         documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert {
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_insert),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_insert),
-        ['<C-y>'] = cmp.mapping.confirm({ cmp_select, select = true }, { 'i', 'c' }),
-        ['<Tab>'] = cmp.mapping.confirm({ cmp_select, select = true }, { 'i', 'c' }),
-        ['<C-e>'] = cmp.mapping.abort(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm { select = true, { behavior = cmp.SelectBehavior.Insert } },
+        ['<Tab>'] = cmp.mapping.confirm { select = true, { behavior = cmp.SelectBehavior.Insert } },
       },
     }
   end,
