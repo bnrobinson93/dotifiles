@@ -1,20 +1,31 @@
 return {
-  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
-  'folke/trouble.nvim',
-  'JoosepAlviste/nvim-ts-context-commentstring',
-  'kylechui/nvim-surround',
-  'mattn/emmet-vim',
-  'mbbill/undotree',
-  'numToStr/Comment.nvim',
-  'nvim-treesitter/nvim-treesitter-context',
-  'stevearc/conform.nvim', -- prettier
-  'stevearc/dressing.nvim',
-  -- 'tpope/vim-fugitive',
-  'NeogitOrg/neogit',
-  'tpope/vim-surround',
-  'windwp/nvim-autopairs',
-  'windwp/nvim-ts-autotag',
+  'fo>ke/trouble.nvim', -- diagnostic panel
+  'mbbill/undotree', -- tre view of history
+  'NeogitOrg/neogit', -- Git
+  'nvim-treesitter/nvim-treesitter-context', -- jump to context
+  'stevearc/conform.nvim', -- formatting
+  'stevearc/dressing.nvim', -- Better select and insert boxes
 
+  -- Theme
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+
+  -- Change, add, or remove surrounding pairs
+  { 'kylechui/nvim-surround', version = '*', opts = {} },
+
+  -- Smart Commenting for sub-languages (JSX)
+  { 'JoosepAlviste/nvim-ts-context-commentstring', opts = { enable_autocmd = false } },
+
+  -- Comments
+  {
+    'numToStr/Comment.nvim',
+    dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+    config = function()
+      local prehook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+      require('Comment').setup { pre_hook = prehook }
+    end,
+  },
+
+  -- Snippet engine
   {
     'L3MON4D3/LuaSnip',
     dependencies = { 'rafamadriz/friendly-snippets' },
@@ -24,6 +35,7 @@ return {
     end,
   },
 
+  -- syntax highlighting and code tree builder
   {
     'nvim-treesitter/nvim-treesitter',
     version = false,
@@ -32,12 +44,14 @@ return {
     end,
   },
 
+  -- search
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.3',
     dependencies = { { 'nvim-lua/plenary.nvim' } },
   },
 
+  -- status line
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {
@@ -47,11 +61,13 @@ return {
     },
   },
 
+  -- auto close and udpate html tags
   {
     'windwp/nvim-ts-autotag',
     ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'markdown' },
   },
 
+  -- Display color of tailwind on top of class
   {
     'themaxmarchuk/tailwindcss-colors.nvim',
     ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'markdown' },

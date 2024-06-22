@@ -2,9 +2,6 @@ vim.g.skip_ts_context_commentstring_module = true
 
 return {
   'nvim-treesitter/nvim-treesitter',
-  dependencies = {
-    'windwp/nvim-ts-autotag',
-  },
   version = false,
   cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
   build = ':TSUpdate',
@@ -58,12 +55,6 @@ return {
         scope_incremental = false,
         node_decremental = '<bs>',
       },
-    },
-    autotag = {
-      enable = true,
-      enable_rename = true,
-      enable_close = false,
-      enable_close_on_slash = true,
     },
   },
   keys = {
