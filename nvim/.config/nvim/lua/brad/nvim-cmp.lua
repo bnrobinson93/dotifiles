@@ -35,7 +35,7 @@ return {
           mode = 'symbol_text',
           maxwidth = 50,
           ellipsis_char = '...',
-          symbol_map = { Codeium = '' },
+          symbol_map = { Codeium = '' },
         },
       },
       sources = cmp.config.sources {
