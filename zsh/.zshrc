@@ -1,6 +1,6 @@
 # Autostart tmux
 export TERM=xterm-256color
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && ! pstree -s $$ | grep -wq code; then
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && ! pstree -s $$ | grep -wqE 'code|language-server'; then
   exec tmux
 fi
 
@@ -137,7 +137,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # auto-cpufreq
-eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
+`which auto-cpufreq` >/dev/null && eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/brad/.zshrc'
