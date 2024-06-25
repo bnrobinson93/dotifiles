@@ -1,5 +1,7 @@
 return {
   'hrsh7th/nvim-cmp',
+  lazy = true,
+  event = 'InsertEnter',
   dependencies = {
     'onsails/lspkind.nvim',
     -- Autocompletion

@@ -4,8 +4,10 @@ return {
   'nvim-treesitter/nvim-treesitter',
   version = false,
   cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
-  build = ':TSUpdate',
-  event = { 'VeryLazy' },
+  build = function()
+    pcall(require('nvim-treesitter.install').update { with_sync = true })
+  end,
+  lazy = false,
   init = function(plugin)
     -- https://www.lazyvim.org/plugins/treesitter
     -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early

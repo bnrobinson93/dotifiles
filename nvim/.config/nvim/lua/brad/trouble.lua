@@ -1,6 +1,6 @@
 return {
   'folke/trouble.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'nvim-telescope/telescope.nvim' },
   opts = {
     focus = true,
     multiline = true, -- render multi-line messages

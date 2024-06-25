@@ -1,6 +1,6 @@
 return {
   'williamboman/mason-lspconfig.nvim',
-  lazy = false,
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'williamboman/mason.nvim',
     'neovim/nvim-lspconfig',
@@ -11,28 +11,56 @@ return {
     require('fidget').setup {
       notification = { window = { winblend = 0 } },
     }
-    require('mason').setup()
+    require('mason').setup {
+      ui = {
+        icons = {
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
+        },
+      },
+    }
     require('mason-lspconfig').setup {
       automatic_install = true,
-      ensure_installed = { 'vtsls', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
+      ensure_installed = { 'tsserver', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
       handlers = {
         function(name)
           require('lspconfig')[name].setup {}
         end,
 
-        --[[ ['tsserver'] = function()
+        ['tsserver'] = function()
           local lspconfig = require 'lspconfig'
           local util = require 'lspconfig.util'
           lspconfig.tsserver.setup {
             root_dir = util.root_pattern '.git',
-            preferences = { includeCompletionsForModuleExports = false },
+            path = '$HOME/.local/share/pnpm/tsc',
+            on_attach = function(client)
+              client.server_capabilities.semanticTokensProvider = nil
+              client.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+            end,
+          }
+        end,
+
+        --[[ ['vtsls'] = function()
+          local lspconfig = require 'lspconfig'
+          lspconfig.configs = require('vtsls').lspconfig
+          lspconfig.vtsls.setup {
+            refactor_auto_rename = true,
+            experimental = {
+              completion = { enableServerSideFuzzyMatch = false, entriesLimit = 10, includePackageJsonAutoImports = 'off' },
+            },
+            typescript = {
+              inlayHints = {
+                parameterNames = { enabled = 'literals' },
+                parameterTypes = { enabled = true },
+                variableTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                enumMemberValues = { enabled = true },
+              },
+            },
           }
         end, ]]
-
-        ['vtsls'] = function()
-          local lspconfig = require 'lspconfig'
-          lspconfig.vtsls.setup {}
-        end,
 
         ['tailwindcss'] = function()
           local lspconfig = require 'lspconfig'
@@ -80,6 +108,13 @@ return {
       typescript = 'eslint_d',
       javascript = 'eslint_d',
     }
+
+    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      signs = true,
+      underline = true,
+      update_in_insert = true,
+    })
 
     -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
     -- Also hides the text at the bottom, see https://github.com/neovim/neovim/issues/20457#issuecomment-1266782345
