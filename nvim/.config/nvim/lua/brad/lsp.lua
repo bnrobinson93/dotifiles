@@ -104,13 +104,6 @@ return {
       },
     }
 
-    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = true,
-      signs = true,
-      underline = true,
-      update_in_insert = true,
-    })
-
     -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
     -- Also hides the text at the bottom, see https://github.com/neovim/neovim/issues/20457#issuecomment-1266782345
     vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
