@@ -104,11 +104,6 @@ return {
       },
     }
 
-    require('lint').linters_by_ft = {
-      typescript = 'eslint_d',
-      javascript = 'eslint_d',
-    }
-
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
       virtual_text = true,
       signs = true,
