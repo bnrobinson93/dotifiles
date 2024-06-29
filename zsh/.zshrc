@@ -105,6 +105,14 @@ function lss {
   fi
 }
 
+function l {
+  if type "eza" >/dev/null 2>&1; then
+    eza -lah -smod --icons --git $*
+  else
+    ls -ltrha $*
+  fi
+}
+
 if type "eza" >/dev/null 2>&1; then
   alias ls="eza"
 else
