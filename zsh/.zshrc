@@ -73,8 +73,8 @@ alias vi=$EDITOR
 
 #unalias la
 function la {
-  if type "exa" >/dev/null 2>&1; then
-    exa -la -h -smod $*
+  if type "eza" >/dev/null 2>&1; then
+    eza -la -h -smod $*
   else
     ls -larth $*
   fi
@@ -82,31 +82,31 @@ function la {
 
 #unalias ll
 function ll {
-  if type "exa" >/dev/null 2>&1; then
-    exa -l -h -smod $*
+  if type "eza" >/dev/null 2>&1; then
+    eza -l -h -smod $*
   else
     ls -lrth $*
   fi
 }
 
 function lt {
-  if type "exa" >/dev/null 2>&1; then
-    exa -l -h -smod $* | tail -15
+  if type "eza" >/dev/null 2>&1; then
+    eza -l -h -smod $* | tail -15
   else
     ls -larth $*
   fi
 }
 
 function lss {
-  if type "exa" >/dev/null 2>&1; then
-    exa -l -h -smod $* | less -reXF
+  if type "eza" >/dev/null 2>&1; then
+    eza -l -h -smod $* | less -reXF
   else
     ls -lrth $* | less -erXF
   fi
 }
 
-if type "exa" >/dev/null 2>&1; then
-  alias ls="exa"
+if type "eza" >/dev/null 2>&1; then
+  alias ls="eza"
 else
   ls="ls --color=tty"
 fi
@@ -137,7 +137,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # auto-cpufreq
-`which auto-cpufreq` >/dev/null && eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
+which auto-cpufreq >/dev/null && eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/brad/.zshrc'
