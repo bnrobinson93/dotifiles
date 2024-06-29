@@ -1,5 +1,6 @@
 return {
   '3rd/image.nvim',
+  cond = vim.env.KITTY_WINDOW_ID ~= nil,
   opts = {
     backend = 'kitty',
     html = { enabled = true },
