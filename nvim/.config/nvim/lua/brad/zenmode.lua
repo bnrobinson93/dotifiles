@@ -7,14 +7,9 @@ return {
     },
     plugins = {
       options = { enabled = true, laststatus = 0 },
-      alacritty = {
-        enabled = false,
-        font = '17',
-      },
-      wezterm = {
-        enabled = true,
-        font = '+3',
-      },
+      alacritty = { enabled = true, font = '17' },
+      kitty = { enabled = true, font = '+3' },
+      wezterm = { enabled = true, font = '+3' },
       gitsgns = { enabled = true },
       tmux = { enabled = true },
     },
