@@ -68,9 +68,6 @@ return {
           lspconfig.tailwindcss.setup {
             validate = true,
             root_dir = util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts'),
-            on_attach = function(_, bufnr)
-              require('tailwindcss-colors').buf_attach(bufnr)
-            end,
           }
         end,
 
