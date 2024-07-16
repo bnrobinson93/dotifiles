@@ -2,13 +2,12 @@ vim.g.skip_ts_context_commentstring_module = true
 
 return {
   'nvim-treesitter/nvim-treesitter',
-  dependencies = {
-    'windwp/nvim-ts-autotag',
-  },
   version = false,
   cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
-  build = ':TSUpdate',
-  event = { 'VeryLazy' },
+  build = function()
+    pcall(require('nvim-treesitter.install').update { with_sync = true })
+  end,
+  lazy = false,
   init = function(plugin)
     -- https://www.lazyvim.org/plugins/treesitter
     -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
@@ -58,12 +57,6 @@ return {
         scope_incremental = false,
         node_decremental = '<bs>',
       },
-    },
-    autotag = {
-      enable = true,
-      enable_rename = true,
-      enable_close = false,
-      enable_close_on_slash = true,
     },
   },
   keys = {

@@ -1,6 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  event = 'InsertEnter',
+  event = { 'BufReadPre', 'BufNewFile' },
   keys = {
     {
       '<leader>f',
@@ -27,10 +27,11 @@ return {
       json = { 'prettierd' },
       graphql = { 'prettierd' },
       yaml = { 'prettierd' },
-      markdown = { 'mdfmt' },
+      markdown = { 'prettierd' },
       lua = { 'stylua' },
     },
     format_on_save = {
+      async = false,
       lsp_callback = true,
       timeout_ms = 500,
     },

@@ -1,6 +1,7 @@
 return {
   'hrsh7th/nvim-cmp',
-  event = 'BufEnter',
+  lazy = true,
+  event = 'InsertEnter',
   dependencies = {
     'onsails/lspkind.nvim',
     -- AI
@@ -37,14 +38,14 @@ return {
           mode = 'symbol_text',
           maxwidth = 50,
           ellipsis_char = '...',
-          symbol_map = { Codeium = '' },
+          symbol_map = { Codeium = '' },
         },
       },
       sources = cmp.config.sources {
-        { name = 'codeium' },
+        { name = 'codeium', max_item_count = 3 },
         { name = 'nvim_lsp' },
-        { name = 'path' },
-        { name = 'buffer', keyword_length = 4 },
+        { name = 'path', max_item_count = 3 },
+        { name = 'buffer', keyword_length = 4, max_item_count = 5 },
         { name = 'luasnip' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' },

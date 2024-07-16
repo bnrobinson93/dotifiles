@@ -1,9 +1,10 @@
 return {
   'windwp/nvim-autopairs',
   event = 'InsertEnter',
-  enabled = false,
+  ft = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'lua' },
   opts = {
     check_ts = true,
+    disable_in_macro = true,
     ts_config = {
       lua = { 'string', 'source' },
       javascript = { 'string', 'template_string' },

@@ -1,15 +1,11 @@
 return {
   'folke/which-key.nvim',
   event = 'VeryLazy',
-  init = function()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 3000
-  end,
   opts = {
+    preset = 'modern',
+    delay = 1000,
     plugins = {
-      presets = {
-        motion = false,
-      },
+      presets = { motion = false },
     },
   },
 }

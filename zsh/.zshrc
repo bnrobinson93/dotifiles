@@ -1,6 +1,6 @@
 # Autostart tmux
-export TERM=xterm-256color
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && ! pstree -s $$ | grep -wq code; then
+# export TERM=xterm-256color
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && ! pstree -s $$ | grep -wqE 'code|language-server'; then
   exec tmux
 fi
 
@@ -73,8 +73,8 @@ alias vi=$EDITOR
 
 #unalias la
 function la {
-  if type "exa" >/dev/null 2>&1; then
-    exa -la -h -smod $*
+  if type "eza" >/dev/null 2>&1; then
+    eza -la -h -smod $*
   else
     ls -larth $*
   fi
@@ -82,31 +82,39 @@ function la {
 
 #unalias ll
 function ll {
-  if type "exa" >/dev/null 2>&1; then
-    exa -l -h -smod $*
+  if type "eza" >/dev/null 2>&1; then
+    eza -l -h -smod $*
   else
     ls -lrth $*
   fi
 }
 
 function lt {
-  if type "exa" >/dev/null 2>&1; then
-    exa -l -h -smod $* | tail -15
+  if type "eza" >/dev/null 2>&1; then
+    eza -l -h -smod $* | tail -15
   else
     ls -larth $*
   fi
 }
 
 function lss {
-  if type "exa" >/dev/null 2>&1; then
-    exa -l -h -smod $* | less -reXF
+  if type "eza" >/dev/null 2>&1; then
+    eza -l -h -smod $* | less -reXF
   else
     ls -lrth $* | less -erXF
   fi
 }
 
-if type "exa" >/dev/null 2>&1; then
-  alias ls="exa"
+function l {
+  if type "eza" >/dev/null 2>&1; then
+    eza -lah -smod --icons --git $*
+  else
+    ls -ltrha $*
+  fi
+}
+
+if type "eza" >/dev/null 2>&1; then
+  alias ls="eza"
 else
   ls="ls --color=tty"
 fi

@@ -26,6 +26,7 @@ vim.keymap.set('n', '<C-b>', '<cmd>Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>f', function()
   vim.lsp.buf.format()
 end)
+
 -- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 vim.cmd [[ command W write ]]
 
