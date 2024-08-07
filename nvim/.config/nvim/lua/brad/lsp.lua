@@ -22,13 +22,14 @@ return {
     }
     require('mason-lspconfig').setup {
       automatic_install = true,
-      ensure_installed = { 'tsserver', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
+      -- ensure_installed = { 'tsserver', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
+      ensure_installed = { 'vtsls', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
       handlers = {
         function(name)
           require('lspconfig')[name].setup {}
         end,
 
-        ['tsserver'] = function()
+        --[[ ['tsserver'] = function()
           local lspconfig = require 'lspconfig'
           local util = require 'lspconfig.util'
           lspconfig.tsserver.setup {
@@ -39,9 +40,9 @@ return {
               client.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
             end,
           }
-        end,
+        end, ]]
 
-        --[[ ['vtsls'] = function()
+        ['vtsls'] = function()
           local lspconfig = require 'lspconfig'
           lspconfig.configs = require('vtsls').lspconfig
           lspconfig.vtsls.setup {
@@ -60,7 +61,7 @@ return {
               },
             },
           }
-        end, ]]
+        end,
 
         ['tailwindcss'] = function()
           local lspconfig = require 'lspconfig'
@@ -139,8 +140,18 @@ return {
         vim.lsp.buf.hover { float = { border = 'rounded' } }
       end,
     },
-    -- { '[d', function() vim.diagnostic.goto_prev() end },
-    -- { ']d', function() vim.diagnostic.goto_next() end },
+    {
+      '[d',
+      function()
+        vim.diagnostic.goto_prev()
+      end,
+    },
+    {
+      ']d',
+      function()
+        vim.diagnostic.goto_next()
+      end,
+    },
     {
       '<F1>',
       function()
