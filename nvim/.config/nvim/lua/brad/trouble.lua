@@ -6,13 +6,13 @@ return {
     multiline = true, -- render multi-line messages
     auto_open = false, -- automatically open the list when you have diagnostics
     auto_close = true, -- automatically close the list when you have no diagnostics
-    warn_no_results = false,
+    warn_no_results = true,
   },
   keys = {
     { '<leader>tt', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Toggle buffer diagnostics' },
     { '<leader>td', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Toggle trouble' },
     { '<leader>tq', '<cmd>Trouble qflist toggle<cr>', desc = 'Toggle trouble quickfix' },
-    { ']d', '<cmd>Trouble diagnostics next<cr><cmd>Trouble close<cr>', desc = 'Next trouble' },
-    { ']d', '<cmd>Trouble diagnostics prev<cr><cmd>Trouble close<cr>', desc = 'Prev trouble' },
+    -- { '[d', '<cmd>Trouble diagnostics next focus=false<cr><cmd>Trouble close<cr>', desc = 'Next trouble' },
+    -- { ']d', '<cmd>Trouble diagnostics prev focus=false<cr><cmd>Trouble close<cr>', desc = 'Prev trouble' },
   },
 }
