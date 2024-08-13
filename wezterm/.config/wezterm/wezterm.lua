@@ -38,51 +38,51 @@ return {
 
 	-- TMUX replacement
 	-- Leader is the same as my old tmux prefix
-	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
+	-- leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
 	keys = {
+		-- -- splitting
+		-- {
+		-- 	mods = "LEADER",
+		-- 	key = "-",
+		-- 	action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+		-- },
+		-- {
+		-- 	mods = "LEADER",
+		-- 	key = "|",
+		-- 	action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+		-- },
+		-- {
+		-- 	mods = "LEADER",
+		-- 	key = "z",
+		-- 	action = wezterm.action.TogglePaneZoomState,
+		-- },
+		-- -- activate copy mode or vim mode
+		-- {
+		-- 	key = "[",
+		-- 	mods = "LEADER",
+		-- 	action = wezterm.action.ActivateCopyMode,
+		-- },
+		-- {
+		-- 	key = "p",
+		-- 	mods = "LEADER",
+		-- 	action = wezterm.action.PasteFrom("Clipboard"),
+		-- },
+		-- {
+		-- 	key = "/",
+		-- 	mods = "LEADER",
+		-- 	action = wezterm.action.Search("CurrentSelectionOrEmptyString"),
+		-- },
 		{ key = "F11", action = wezterm.action.ToggleFullScreen },
-		-- splitting
-		{
-			mods = "LEADER",
-			key = "-",
-			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-		},
-		{
-			mods = "LEADER",
-			key = "|",
-			action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-		},
-		{
-			mods = "LEADER",
-			key = "z",
-			action = wezterm.action.TogglePaneZoomState,
-		},
-		-- activate copy mode or vim mode
-		{
-			key = "[",
-			mods = "LEADER",
-			action = wezterm.action.ActivateCopyMode,
-		},
-		{
-			key = "p",
-			mods = "LEADER",
-			action = wezterm.action.PasteFrom("Clipboard"),
-		},
-		{
-			key = "/",
-			mods = "LEADER",
-			action = wezterm.action.Search("CurrentSelectionOrEmptyString"),
-		},
 	},
-	search_mode = {
-		{ key = "Escape", mods = "NONE", action = act({ CopyMode = "Close" }) },
-		-- Go back to copy mode when pressing enter, so that we can use unmodified keys like "n"
-		-- to navigate search results without conflicting with typing into the search area.
-		{ key = "Enter", mods = "NONE", action = "ActivateCopyMode" },
-		{ key = "c", mods = "CTRL", action = "ActivateCopyMode" },
-		{ key = "n", mods = "CTRL", action = act({ CopyMode = "NextMatch" }) },
-		{ key = "p", mods = "CTRL", action = act({ CopyMode = "PriorMatch" }) },
-		{ key = "r", mods = "CTRL", action = act.CopyMode("CycleMatchType") },
-		{ key = "u", mods = "CTRL", action = act.CopyMode("ClearPattern") },
-	},
+	-- search_mode = {
+	-- 	{ key = "Escape", mods = "NONE", action = act({ CopyMode = "Close" }) },
+	-- 	-- Go back to copy mode when pressing enter, so that we can use unmodified keys like "n"
+	-- 	-- to navigate search results without conflicting with typing into the search area.
+	-- 	{ key = "Enter", mods = "NONE", action = "ActivateCopyMode" },
+	-- 	{ key = "c", mods = "CTRL", action = "ActivateCopyMode" },
+	-- 	{ key = "n", mods = "CTRL", action = act({ CopyMode = "NextMatch" }) },
+	-- 	{ key = "p", mods = "CTRL", action = act({ CopyMode = "PriorMatch" }) },
+	-- 	{ key = "r", mods = "CTRL", action = act.CopyMode("CycleMatchType") },
+	-- 	{ key = "u", mods = "CTRL", action = act.CopyMode("ClearPattern") },
+	-- },
 }
