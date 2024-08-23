@@ -1,5 +1,6 @@
 return {
   'echasnovski/mini.animate',
+  enabled = false,
   opts = function()
     -- don't use animate when scrolling with the mouse
     local mouse_scrolled = false
@@ -24,7 +25,7 @@ return {
         timing = animate.gen_timing.linear { duration = 50, unit = 'total' },
       },
       scroll = {
-        timing = animate.gen_timing.linear { duration = 150, unit = 'total' },
+        timing = animate.gen_timing.linear { duration = 50, unit = 'total' },
         subscroll = animate.gen_subscroll.equal {
           predicate = function(total_scroll)
             if mouse_scrolled then
