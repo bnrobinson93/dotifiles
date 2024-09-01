@@ -25,7 +25,7 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 end)
 
 return {
-	window_background_opacity = 0.95,
+	window_background_opacity = 0.97,
 	macos_window_background_blur = 90,
 	color_scheme = "Catppuccin Mocha",
 	allow_square_glyphs_to_overflow_width = "Always",
