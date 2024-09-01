@@ -22,7 +22,6 @@ return {
     }
     require('mason-lspconfig').setup {
       automatic_install = true,
-      -- ensure_installed = { 'tsserver', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
       ensure_installed = { 'vtsls', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
       handlers = {
         function(name)
@@ -59,6 +58,17 @@ return {
                 functionLikeReturnTypes = { enabled = true },
                 enumMemberValues = { enabled = true },
               },
+            },
+          }
+        end,
+
+        ['cssls'] = function()
+          local lspconfig = require 'lspconfig'
+          lspconfig.cssls.setup {
+            settings = {
+              css = { validate = true, lint = { unknownAtRules = 'ignore' } },
+              scss = { validate = true, lint = { unknownAtRules = 'ignore' } },
+              less = { validate = true, lint = { unknownAtRules = 'ignore' } },
             },
           }
         end,
