@@ -1,5 +1,8 @@
 vim.loader.enable()
 
+-- For Obsidian
+vim.opt.conceallevel = 1
+
 vim.opt.guicursor = ''
 
 vim.opt.nu = true
