@@ -26,7 +26,7 @@ return {
     },
     new_notes_location = 'notes_subdir',
     ui = {
-      enable = true,
+      enable = false,
       checkboxes = {
         [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
         ['x'] = { char = '', hl_group = 'ObsidianDone' },
