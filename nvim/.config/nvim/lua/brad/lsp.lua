@@ -93,7 +93,7 @@ return {
       },
     }
 
-    local signs = { Error = ' ', Warning = ' ', Hint = ' ', Information = ' ' }
+    local signs = { Error = ' ', Warning = ' ', Warn = ' ', Hint = ' ', Info = ' ', Information = ' ' }
     for type, icon in pairs(signs) do
       local hl = 'DiagnosticSign' .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
@@ -101,8 +101,11 @@ return {
 
     vim.diagnostic.config {
       virtual_text = true,
+      underline = true,
+      update_in_insert = true,
       check_current_line = true,
       severity_sort = true,
+      signs = true,
       float = {
         style = 'minimal',
         border = 'rounded',
