@@ -16,11 +16,14 @@ Contains all the dotfiles that I use in my development environment.
 
 ## Usage
 
-- `stow -t $HOME dotfiles`
+- `stow ~/.dotfiles`
+- `cp ~/.dotfiles/zsh/.* ~/`
+- `cp ~/.dotfiles/git/.* ~/`
 - `tmux source-file ~/.tmux.conf`
 - `chsh -s /bin/zsh`
 
 ## Note for WSL
+
 In WSL, the locale is not updated by default. Ensure it's updated to use UTF-8 and English.
 
 Run the below, then restart the terminal/tmux session.
