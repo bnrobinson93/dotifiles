@@ -22,6 +22,12 @@ setopt histignoredups
 SAVEHIST=10000 # Number of entries
 HISTSIZE=10000
 HISTFILE=~/.history # File
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
 setopt histignoredups
 setopt APPEND_HISTORY # Don't erase history
 setopt EXTENDED_HISTORY # Add additional data to history like timestamp
