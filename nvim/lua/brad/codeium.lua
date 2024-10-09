@@ -7,4 +7,7 @@ return {
     'hrsh7th/nvim-cmp',
   },
   config = true,
+  opts = {
+    enable_chat = 'true',
+  },
 }

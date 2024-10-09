@@ -22,7 +22,6 @@ return {
     }
     require('mason-lspconfig').setup {
       automatic_install = true,
-      -- ensure_installed = { 'tsserver', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
       ensure_installed = { 'vtsls', 'bashls', 'cssls', 'lua_ls', 'tailwindcss' },
       handlers = {
         function(name)
@@ -63,6 +62,17 @@ return {
           }
         end,
 
+        ['cssls'] = function()
+          local lspconfig = require 'lspconfig'
+          lspconfig.cssls.setup {
+            settings = {
+              css = { validate = true, lint = { unknownAtRules = 'ignore' } },
+              scss = { validate = true, lint = { unknownAtRules = 'ignore' } },
+              less = { validate = true, lint = { unknownAtRules = 'ignore' } },
+            },
+          }
+        end,
+
         ['tailwindcss'] = function()
           local lspconfig = require 'lspconfig'
           local util = require 'lspconfig.util'
@@ -83,7 +93,7 @@ return {
       },
     }
 
-    local signs = { Error = ' ', Warning = ' ', Hint = ' ', Information = ' ' }
+    local signs = { Error = ' ', Warning = ' ', Warn = ' ', Hint = ' ', Info = ' ', Information = ' ' }
     for type, icon in pairs(signs) do
       local hl = 'DiagnosticSign' .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
@@ -91,8 +101,11 @@ return {
 
     vim.diagnostic.config {
       virtual_text = true,
+      underline = true,
+      update_in_insert = true,
       check_current_line = true,
       severity_sort = true,
+      signs = true,
       float = {
         style = 'minimal',
         border = 'rounded',

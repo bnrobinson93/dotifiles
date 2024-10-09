@@ -1,6 +1,19 @@
 vim.loader.enable()
 
+-- For Obsidian
+vim.opt.conceallevel = 1
+
 vim.opt.guicursor = ''
+vim.opt.cursorline = true
+
+vim.opt.fillchars = {
+  foldopen = '',
+  foldclose = '',
+  fold = ' ',
+  foldsep = ' ',
+  diff = '╱',
+  eob = ' ',
+}
 
 vim.opt.nu = true
 vim.opt.rnu = true
@@ -50,3 +63,14 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   desc = 'load view (folds), when opening file',
   command = 'silent! loadview',
 })
+
+if vim.fn.has 'nvim-0.10' == 1 then
+  vim.opt.smoothscroll = true
+  vim.opt.foldmethod = 'expr'
+  vim.opt.foldtext = ''
+else
+  vim.opt.foldmethod = 'indent'
+end
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
