@@ -140,6 +140,10 @@ export PATH=$PATH:$HOME/.pulumi/bin
 # add tmux to the PATH
 export PATH=$PATH:/usr/local/src
 
+# kubernets
+alias k kubectl
+source <(kubectl completion zsh)
+
 # bun completions
 [ -s "/home/brad/.bun/_bun" ] && source "/home/brad/.bun/_bun"
 
