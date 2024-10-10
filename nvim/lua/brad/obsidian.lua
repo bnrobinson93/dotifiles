@@ -2,13 +2,13 @@ return {
   'epwalsh/obsidian.nvim',
   ft = 'markdown',
   event = {
-    'BufReadPre ' .. vim.fn.expand '~' .. '/Documents/Vault/*.md',
-    'BufNewFile ' .. vim.fn.expand '~' .. '/Documents/Vault/*.md',
+    'BufReadPre ' .. '/mnt/c/Users/brandon.robinson.GROUPINFRA/Documents/Obsidian_Vault',
+    'BufNewFile ' .. '/mnt/c/Users/brandon.robinson.GROUPINFRA/Documents/Obsidian_Vault',
   },
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
     workspaces = {
-      { name = 'personal', path = '~/Documents/Vault' },
+      { name = 'personal', path = '/mnt/c/Users/brandon.robinson.GROUPINFRA/Documents/Obsidian_Vault' },
     },
     completion = {
       nvim_cmp = true,
