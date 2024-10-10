@@ -141,7 +141,7 @@ export PATH=$PATH:$HOME/.pulumi/bin
 export PATH=$PATH:/usr/local/src
 
 # kubernets
-alias k kubectl
+alias k=kubectl
 source <(kubectl completion zsh)
 
 # bun completions
