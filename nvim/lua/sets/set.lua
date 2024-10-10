@@ -26,6 +26,17 @@ vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
 vim.opt.expandtab = true
 vim.opt.smarttab = true
+-- Highlight trailing spaces in YAML files
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = { '*.yaml', '*.yml' },
+  desc = 'Highlight trailing whitespace in YAML files',
+  callback = function()
+    vim.opt.list = true
+    vim.opt.listchars:append 'trail:·'
+    vim.cmd 'highlight ExtraWhitespace ctermbg=red guibg=red'
+    vim.fn.matchadd('ExtraWhitespace', '\\s\\+$')
+  end,
+})
 
 vim.opt.wrap = false
 
