@@ -137,6 +137,9 @@ export PATH="$PNPM_HOME:$PATH"
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
 
+# add tmux to the PATH
+export PATH=$PATH:/usr/local/src
+
 # bun completions
 [ -s "/home/brad/.bun/_bun" ] && source "/home/brad/.bun/_bun"
 
