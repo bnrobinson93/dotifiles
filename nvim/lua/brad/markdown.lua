@@ -2,6 +2,7 @@ return {
   'MeanderingProgrammer/render-markdown.nvim',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
   opts = {
+    render_modes = { 'n', 'c', 'i' },
     unchecked = {
       -- Replaces '[ ]' of 'task_list_marker_unchecked'
       icon = '󰄱 ',
