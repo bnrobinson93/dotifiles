@@ -11,16 +11,16 @@ return {
   },
   opts = {
     level = 'INFO',
-    render = 'compact',
+    render = 'wrapped-compact',
     -- background_colour = 'Conceal',
     -- opacity = 50,
     stages = 'slide',
-    timeout = 1000,
+    timeout = 800,
     max_height = function()
       return math.floor(vim.o.lines * 0.75)
     end,
     max_width = function()
-      return math.floor(vim.o.columns * 0.75)
+      return math.floor(vim.o.columns * 0.35)
     end,
     on_open = function(win)
       vim.api.nvim_win_set_config(win, { zindex = 100 })
