@@ -10,8 +10,12 @@ return {
     },
   },
   opts = {
-    stages = 'static',
-    timeout = 3000,
+    level = 'INFO',
+    render = 'compact',
+    -- background_colour = 'Conceal',
+    -- opacity = 50,
+    stages = 'slide',
+    timeout = 1000,
     max_height = function()
       return math.floor(vim.o.lines * 0.75)
     end,
