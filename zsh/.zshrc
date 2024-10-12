@@ -138,6 +138,11 @@ if type "pacstall" >/dev/null 2>&1; then
   source /usr/share/bash-completion/completions/pacstall
 fi
 
+if type "kubectl" >/dev/null 2>&1; then
+  alias k=kubectl
+  source <(kubectl completion zsh)
+fi
+
 # Fix issue with apt <thing>* not working
 unsetopt no_match
 
@@ -150,6 +155,7 @@ export PATH=$PATH:$HOME/.pulumi/bin
 
 # bun completions
 [ -s "/home/brad/.bun/_bun" ] && source "/home/brad/.bun/_bun"
+
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
