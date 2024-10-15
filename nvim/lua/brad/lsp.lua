@@ -5,7 +5,6 @@ return {
     'williamboman/mason.nvim',
     'neovim/nvim-lspconfig',
     'j-hui/fidget.nvim',
-    'mfussenegger/nvim-lint',
   },
   config = function()
     require('fidget').setup {
@@ -66,9 +65,9 @@ return {
           local lspconfig = require 'lspconfig'
           lspconfig.cssls.setup {
             settings = {
-              css = { validate = true, lint = { unknownAtRules = 'ignore' } },
-              scss = { validate = true, lint = { unknownAtRules = 'ignore' } },
-              less = { validate = true, lint = { unknownAtRules = 'ignore' } },
+              css = { validate = true },
+              scss = { validate = true },
+              less = { validate = true },
             },
           }
         end,

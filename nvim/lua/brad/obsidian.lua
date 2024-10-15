@@ -1,15 +1,41 @@
+local Vault = vim.fn.expand '~' .. '/Documents/Vault'
+
+local function createNoteWithDefaultTemplate()
+  local TEMPLATE_FILENAME = 'zettle'
+  local obsidian = require('obsidian').get_client()
+  local utils = require 'obsidian.util'
+
+  -- prevent Obsidian.nvim from injecting it's own frontmatter table
+  -- obsidian.opts.disable_frontmatter = true
+
+  -- prompt for note title
+  -- @see: borrowed from obsidian.command.new
+  local note
+  local title = utils.input 'Enter title or path (optional): '
+  if not title then
+    return
+  elseif title == '' then
+    title = nil
+  end
+
+  note = obsidian:create_note { title = title, no_write = true }
+
+  if not note then
+    return
+  end
+  -- open new note in a buffer
+  obsidian:open_note(note, { sync = true })
+  -- NOTE: make sure the template folder is configured in Obsidian.nvim opts
+  obsidian:write_note_to_buffer(note, { template = TEMPLATE_FILENAME })
+end
+
 return {
   'epwalsh/obsidian.nvim',
   ft = 'markdown',
-  event = {
-    'BufReadPre ' .. '/mnt/c/Users/brandon.robinson.GROUPINFRA/Documents/Obsidian_Vault',
-    'BufNewFile ' .. '/mnt/c/Users/brandon.robinson.GROUPINFRA/Documents/Obsidian_Vault',
-  },
+  event = {},
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
-    workspaces = {
-      { name = 'personal', path = '/mnt/c/Users/brandon.robinson.GROUPINFRA/Documents/Obsidian_Vault' },
-    },
+    workspaces = {},
     completion = {
       nvim_cmp = true,
       min_chars = 2,
@@ -21,26 +47,50 @@ return {
     },
     templates = {
       folder = 'resources/templates',
-      date_format = '%Y-%m-%d-%a',
-      time_format = '%H:%M',
+      date_format = '%Y%m%d',
+      time_format = '%H%M',
     },
-    new_notes_location = 'notes_subdir',
-    ui = {
-      enable = false,
-      checkboxes = {
-        [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
-        ['x'] = { char = '', hl_group = 'ObsidianDone' },
-        ['>'] = { char = '', hl_group = 'ObsidianRightArrow' },
-        ['~'] = { char = '󰰱', hl_group = 'ObsidianTilde' },
-        ['!'] = { char = '', hl_group = 'ObsidianImportant' },
-      },
-      bullets = { char = '•', hl_group = 'ObsidianBullet' },
-      external_link_icon = { char = '', hl_group = 'ObsidianExtLinkIcon' },
-      reference_text = { hl_group = 'ObsidianRefText' },
-      highlight_text = { hl_group = 'ObsidianHighlightText' },
-      tags = { hl_group = 'ObsidianTag' },
-      block_ids = { hl_group = 'ObsidianBlockID' },
-    },
+    new_notes_location = '0-Inbox',
+    note_id_func = function(title)
+      -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+      -- In this case a note with the title 'My new note' will be given an ID that looks
+      -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+      local suffix = ''
+      if title ~= nil then
+        -- If title is given, transform it into valid file name.
+        suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
+      else
+        -- If title is nil, just add 4 random uppercase letters to the suffix.
+        for _ = 1, 4 do
+          suffix = suffix .. string.char(math.random(65, 90))
+        end
+      end
+      return tostring(os.time()) .. '-' .. suffix
+    end,
+    note_id_func = function(title)
+      local suffix = ''
+      if title ~= nil then
+        suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
+      else
+        for _ = 1, 4 do
+          suffix = suffix .. string.char(math.random(65, 90))
+        end
+      end
+      return suffix
+    end,
+    note_frontmatter_func = function(note)
+      local now = os.date '%Y-%m-%dT%H:%M'
+      local out = { updated = now, created = now }
+
+      if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+        for k, v in pairs(note.metadata) do
+          out[k] = v
+        end
+      end
+
+      return out
+    end,
+    ui = { enable = false },
     attachments = {
       img_folder = 'resources/attachments',
     },
@@ -67,5 +117,6 @@ return {
         opts = { buffer = true, expr = true },
       },
     },
+    vim.keymap.set('n', '<C-n>', createNoteWithDefaultTemplate, { desc = 'Create [N]ote' }),
   },
 }

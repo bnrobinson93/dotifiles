@@ -22,6 +22,12 @@ setopt histignoredups
 SAVEHIST=10000 # Number of entries
 HISTSIZE=10000
 HISTFILE=~/.history # File
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
 setopt histignoredups
 setopt APPEND_HISTORY # Don't erase history
 setopt EXTENDED_HISTORY # Add additional data to history like timestamp
@@ -126,6 +132,16 @@ if type "nala" >/dev/null 2>&1; then
   alias sudo='sudo '
   alias apt="nala"
 fi
+if type "pacstall" >/dev/null 2>&1; then
+  autoload bashcompinit
+  bashcompinit
+  source /usr/share/bash-completion/completions/pacstall
+fi
+
+if type "kubectl" >/dev/null 2>&1; then
+  alias k=kubectl
+  source <(kubectl completion zsh)
+fi
 
 # Fix issue with apt <thing>* not working
 unsetopt no_match
@@ -146,6 +162,7 @@ source <(kubectl completion zsh)
 
 # bun completions
 [ -s "/home/brad/.bun/_bun" ] && source "/home/brad/.bun/_bun"
+
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
