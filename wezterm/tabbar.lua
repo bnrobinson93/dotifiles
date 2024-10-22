@@ -42,6 +42,9 @@ function tab_title(tab_info)
   return tab_info.active_pane.title
 end
 
+-- { Foreground = { Color = '#262626' } },
+-- { Background = { Color = '#ffafd7' } },
+-- { Text = ROUND_LEFT },
 wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
   local title = tab_title(tab)
   local id = tab.tab_id
