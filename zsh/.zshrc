@@ -1,8 +1,8 @@
 # Autostart tmux
 # export TERM=xterm-256color
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && ! pstree -s $$ | grep -wqE 'code|language-server'; then
-  exec tmux
-fi
+#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && ! pstree -s $$ | grep -wqE 'code|language-server'; then
+#  exec tmux
+#fi
 
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && \
@@ -140,6 +140,7 @@ fi
 
 if type "kubectl" >/dev/null 2>&1; then
   alias k=kubectl
+  alias kgp="kubectl get pods"
   source <(kubectl completion zsh)
 fi
 
