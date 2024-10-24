@@ -136,6 +136,8 @@ if type "nala" >/dev/null 2>&1; then
   alias apt="nala"
 fi
 if type "pacstall" >/dev/null 2>&1; then
+  autoload bashcompinit
+  bashcompinit
   source /usr/share/bash-completion/completions/pacstall
 fi
 
