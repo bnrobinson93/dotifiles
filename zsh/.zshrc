@@ -147,6 +147,12 @@ if type "kubectl" >/dev/null 2>&1; then
   source <(kubectl completion zsh)
 fi
 
+# Homebrew
+if type "brew" >/dev/null 2>&1; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  export HOMEBREW_AUTO_UPDATE_SECS=$((60 * 60 * 24))
+fi
+
 # Fix issue with apt <thing>* not working
 unsetopt no_match
 
@@ -160,6 +166,7 @@ export PATH=$PATH:$HOME/.pulumi/bin
 # bun completions
 [ -s "/home/brad/.bun/_bun" ] && source "/home/brad/.bun/_bun"
 
+export ZETTELKASTEN=$HOME/Documents/Vault
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -174,3 +181,9 @@ zstyle :compinstall filename '/home/brad/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/home/brad/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+source /home/brad/.config/op/plugins.sh
