@@ -37,11 +37,12 @@ return {
           mode = 'symbol_text',
           maxwidth = 50,
           ellipsis_char = '...',
-          symbol_map = { Codeium = '' },
+          symbol_map = { Codeium = '', Supermaven = '' },
         },
       },
       sources = cmp.config.sources {
         { name = 'codeium', max_item_count = 3 },
+        { name = 'supermaven' },
         { name = 'nvim_lsp' },
         { name = 'path', max_item_count = 3 },
         { name = 'buffer', keyword_length = 4, max_item_count = 5 },
