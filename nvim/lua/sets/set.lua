@@ -5,6 +5,7 @@ vim.opt.conceallevel = 1
 
 vim.opt.guicursor = ''
 vim.opt.cursorline = true
+vim.opt.mouse = 'nv'
 
 vim.opt.fillchars = {
   foldopen = '',
