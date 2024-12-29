@@ -75,7 +75,7 @@ prompt_context() {
 }
 
 export ANDROID_SDK=$HOME/Android/Sdk
-export PATH=~/.npm-global/bin:$ANDROID_SDK/platform-tools:$PATH
+export PATH="~/.npm-global/bin:$ANDROID_SDK/platform-tools:$PATH"
 
 grep="grep --color"
 alias vi=$EDITOR
@@ -148,8 +148,9 @@ if type "kubectl" >/dev/null 2>&1; then
 fi
 
 # Homebrew
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 if type "brew" >/dev/null 2>&1; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   export HOMEBREW_AUTO_UPDATE_SECS=$((60 * 60 * 24))
 fi
 
@@ -161,7 +162,7 @@ export PNPM_HOME="/home/brad/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # add Pulumi to the PATH
-export PATH=$PATH:$HOME/.pulumi/bin
+export PATH="$HOME/.pulumi/bin:$PATH"
 
 # bun completions
 [ -s "/home/brad/.bun/_bun" ] && source "/home/brad/.bun/_bun"
@@ -171,6 +172,9 @@ export ZETTELKASTEN=$HOME/Documents/Vault
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Flatpak
+export PATH="$HOME/.local/bin:$PATH"
 
 # auto-cpufreq
 which auto-cpufreq >/dev/null && eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
