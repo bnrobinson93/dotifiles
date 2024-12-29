@@ -11,7 +11,7 @@ return {
   },
   opts = {
     level = 'INFO',
-    render = 'wrapped-compact',
+    -- render = 'wrapped-compact',
     -- background_colour = 'Conceal',
     -- opacity = 50,
     stages = 'slide',
