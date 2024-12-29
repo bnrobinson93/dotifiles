@@ -5,7 +5,7 @@ return {
   cond = require('telescope.utils').get_os_command_output { 'git', 'rev-parse', '--is-inside-work-tree' },
   cmd = 'Telescope',
   keys = {
-    { '<C-b>', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
+    { '<leader>b', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
     { '<C-p>', '<cmd>Telescope git_files<cr>', desc = 'Git files' },
     { '<leader>pf', '<cmd>Telescope find_files<cr>', desc = 'Find files' },
     { '<leader>phf', '<cmd>Telescope find_files hidden=true<cr>', desc = 'Find files' },
