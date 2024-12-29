@@ -1,5 +1,9 @@
 autoload -Uz compinit
-compinit
+if [[ -n $HOME/.cache/zsh/zcompdump-$ZSH_VERSION(#qN.mh+24) ]]; then
+  compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
+else
+  compinit -C;
+fi;
 
 # Autostart tmux
 # export TERM=xterm-256color
@@ -142,15 +146,29 @@ if type "pacstall" >/dev/null 2>&1; then
 fi
 
 if type "kubectl" >/dev/null 2>&1; then
+  kubectl () {
+      command kubectl $*
+      if [[ -z $KUBECTL_COMPLETE ]]
+      then
+          source <(command kubectl completion zsh)
+          KUBECTL_COMPLETE=1 
+      fi
+  }
   alias k=kubectl
   alias kgp="kubectl get pods"
-  source <(kubectl completion zsh)
 fi
 
 # Homebrew
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-if type "brew" >/dev/null 2>&1; then
+if test -d ~/.linuxbrew >/dev/null 2>&1; then
+  brew () {
+      command brew $*
+      if [[ -z $BREW_COMPLETE ]]
+      then
+        eval "$(~/.linuxbrew/bin/brew shellenv)" 
+        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        BREW_COMPLETE=1 
+      fi
+  }
   export HOMEBREW_AUTO_UPDATE_SECS=$((60 * 60 * 24))
 fi
 
@@ -181,9 +199,6 @@ which auto-cpufreq >/dev/null && eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/brad/.zshrc'
-
-autoload -Uz compinit
-compinit
 # End of lines added by compinstall
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
