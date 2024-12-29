@@ -1,0 +1,4 @@
+config-file = cattpuccin-mocha.conf
+config-file = cattpuccin-macchiato.conf
+
+theme = catppuccin-mocha
