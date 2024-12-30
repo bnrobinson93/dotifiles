@@ -9,7 +9,7 @@ return {
     hide_progress_notifications_from_history = true,
     pretty_errors = true,
     run_as_monorepo = true,
-    flags = '-b',
+    flags = '-b --noEmit',
     err_buffered = true,
     on_stderr = function(_, data)
       vim.notify(vim.inspect(data))
