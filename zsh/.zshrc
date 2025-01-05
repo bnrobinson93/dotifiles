@@ -159,15 +159,15 @@ if type "kubectl" >/dev/null 2>&1; then
 fi
 
 # Homebrew
-if test -d ~/.linuxbrew >/dev/null 2>&1; then
+if test -d /home/linuxbrew >/dev/null 2>&1; then
   brew () {
-      command brew $*
       if [[ -z $BREW_COMPLETE ]]
       then
-        eval "$(~/.linuxbrew/bin/brew shellenv)" 
+        test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)" 
         test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         BREW_COMPLETE=1 
       fi
+      command brew $*
   }
   export HOMEBREW_AUTO_UPDATE_SECS=$((60 * 60 * 24))
 fi
