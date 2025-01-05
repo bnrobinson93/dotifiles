@@ -1,7 +1,7 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  ft = { 'markdown' },
+  ft = { 'markdown', 'Avante' },
   opts = {
     render_modes = { 'n' },
     unchecked = {
