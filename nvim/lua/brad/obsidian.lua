@@ -1,4 +1,4 @@
-local Vault = vim.fn.expand '~' .. '/Documents/Vault'
+local Vault = '/mnt/c/Users/brandon.robinson.GROUPINFRA/Documents/Obsidian_Vault/'
 
 local function createNoteWithDefaultTemplate()
   local TEMPLATE_FILENAME = 'zettle'
@@ -35,7 +35,9 @@ return {
   event = {},
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
-    workspaces = {},
+    workspaces = {
+      { name = 'Work', path = Vault },
+    },
     completion = {
       nvim_cmp = true,
       min_chars = 2,
