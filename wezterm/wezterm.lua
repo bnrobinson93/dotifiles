@@ -30,6 +30,8 @@ return {
   enable_wayland = true,
   window_background_opacity = 0.98,
   macos_window_background_blur = 80,
+  initial_cols = 120,
+  initial_rows = 30,
   color_scheme = 'Catppuccin Mocha',
   allow_square_glyphs_to_overflow_width = 'Always',
   warn_about_missing_glyphs = false,

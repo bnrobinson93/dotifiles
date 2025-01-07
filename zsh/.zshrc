@@ -1,3 +1,10 @@
+autoload -Uz compinit
+if [[ -n $HOME/.cache/zsh/zcompdump-$ZSH_VERSION(#qN.mh+24) ]]; then
+  compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
+else
+  compinit -C;
+fi;
+
 # Autostart tmux
 # export TERM=xterm-256color
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && ! pstree -s $$ | grep -wqE 'code|language-server'; then
@@ -72,7 +79,7 @@ prompt_context() {
 }
 
 export ANDROID_SDK=$HOME/Android/Sdk
-export PATH=~/.npm-global/bin:$ANDROID_SDK/platform-tools:$PATH
+export PATH="~/.npm-global/bin:$ANDROID_SDK/platform-tools:$PATH"
 
 grep="grep --color"
 alias vi=$EDITOR
@@ -139,8 +146,30 @@ if type "pacstall" >/dev/null 2>&1; then
 fi
 
 if type "kubectl" >/dev/null 2>&1; then
+  kubectl () {
+      command kubectl $*
+      if [[ -z $KUBECTL_COMPLETE ]]
+      then
+          source <(command kubectl completion zsh)
+          KUBECTL_COMPLETE=1 
+      fi
+  }
   alias k=kubectl
-  source <(kubectl completion zsh)
+  alias kgp="kubectl get pods"
+fi
+
+# Homebrew
+if test -d /home/linuxbrew >/dev/null 2>&1; then
+  brew () {
+      if [[ -z $BREW_COMPLETE ]]
+      then
+        test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)" 
+        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        BREW_COMPLETE=1 
+      fi
+      command brew $*
+  }
+  export HOMEBREW_AUTO_UPDATE_SECS=$((60 * 60 * 24))
 fi
 
 # Fix issue with apt <thing>* not working
@@ -151,7 +180,7 @@ export PNPM_HOME="/home/brad/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # add Pulumi to the PATH
-export PATH=$PATH:$HOME/.pulumi/bin
+export PATH="$HOME/.pulumi/bin:$PATH"
 
 # add tmux to the PATH
 export PATH=$PATH:/usr/local/src
@@ -163,17 +192,24 @@ source <(kubectl completion zsh)
 # bun completions
 [ -s "/home/brad/.bun/_bun" ] && source "/home/brad/.bun/_bun"
 
+export ZETTELKASTEN=$HOME/Documents/Vault
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Flatpak
+export PATH="$HOME/.local/bin:$PATH"
 
 # auto-cpufreq
 which auto-cpufreq >/dev/null && eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/brad/.zshrc'
-
-autoload -Uz compinit
-compinit
 # End of lines added by compinstall
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/home/brad/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+source /home/brad/.config/op/plugins.sh
